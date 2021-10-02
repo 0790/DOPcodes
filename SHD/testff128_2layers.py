@@ -128,9 +128,9 @@ print("2 layered 128 unit SNN made weight variables and loss histogram")
 
 
 
-if os.path.isfile((basepath+"/trained128-2layers.pt")):
+if os.path.isfile((basepath+"/trained_values/trained128-2layers.pt")):
 	print('The file is present.')
-	w1,w2,w3 = torch.load(basepath+'/trained128-2layers.pt')
+	w1,w2,w3 = torch.load(basepath+'/trained_values/trained128-2layers.pt')
 else:
 	torch.nn.init.uniform_(w1, a=-np.sqrt(2.0/Nin), b=np.sqrt(2.0/Nin)) #given as uniform distribution in papers, but normal distribution in spytorch code
 	torch.nn.init.uniform_(w2, a=-np.sqrt(2.0/N), b=np.sqrt(2.0/N))
@@ -353,8 +353,8 @@ loss_list,[rw1,rw2,rw3] = training(x_train, y_train , Nepochs = Nepochs)
 loss_hist.append(loss_list)
 print("Training accuracy: %.3f"%(accuracy(x_train,y_train)))
 print("Test accuracy: %.3f"%(accuracy(x_test,y_test)))
-torch.save([rw1,rw2,rw3] , basepath+'/trained128-2layers.pt')
-open_file = open((basepath+"/trainedhist128-2layers.pkl"),"ab")
+torch.save([rw1,rw2,rw3] , basepath+'/trained_values/trained128-2layers.pt')
+open_file = open((basepath+"/trained_values/trainedhist128-2layers.pkl"),"ab")
 pickle.dump(loss_list,open_file)
 print("\nFile list dumped\n")
 open_file.close()

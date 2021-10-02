@@ -118,9 +118,9 @@ loss_hist = []
 #https://pytorch.org/docs/stable/nn.init.html
 
 
-if os.path.isfile((basepath+"/trainedrecur256.pt")):
+if os.path.isfile((basepath+"/trained_values/trainedrecur256.pt")):
 	print('The file is present.')
-	w1,w2,v1 = torch.load(basepath+'/trainedrecur256.pt')
+	w1,w2,v1 = torch.load(basepath+'/trained_values/trainedrecur256.pt')
 	print(w1)
 	print(w2)
 	print(v1)
@@ -305,15 +305,15 @@ loss_hist.append(loss_list)
 print("Training accuracy: %.3f"%(accuracy(x_train,y_train)))
 print("Test accuracy: %.3f"%(accuracy(x_test,y_test)))
 
-torch.save([rw1,rw2,rv1] , basepath+'/trainedrecur256.pt')
-open_file = open(basepath+"/trainedhistrecur256.pkl","ab")
+torch.save([rw1,rw2,rv1] , basepath+'/trained_values/trainedrecur256.pt')
+open_file = open(basepath+"/trained_values/trainedhistrecur256.pkl","ab")
 pickle.dump(loss_list,open_file)
 print("\nFile list dumped\n")
 open_file.close()
 print("Saved in file")
-open_file = open(basepath+ "/trainedhistrecur256.pkl","rb")
+open_file = open(basepath+ "/trained_values/trainedhistrecur256.pkl","rb")
 a = pickle.load(open_file)
-print(a)
+
 print("800 epochs recur round 1")
 print("are new values in file?")
 
