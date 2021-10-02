@@ -11,4 +11,4 @@
 #SBATCH --mail-user=f20180790@hyderabad.bits-pilani.ac.in
 #SBATCH --mail-type=ALL
 module load cuda-11.0.2-gcc-10.2.0-3wlbq6u
-srun python3 testrecurrentsnn_shd.py
+srun python3 testrecurrent128.py
