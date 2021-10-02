@@ -6,7 +6,7 @@
 #SBATCH --mem 25G
 #SBATCH -t 1-00:00
 #SBATCH --job-name=SNN256_2lay
-#SBATCH -o SNN2layers256run2.out
+#SBATCH -o SNN2layers256run3.out
 #SBACTH -e slurm.%j.err
 #SBATCH --mail-user=f20180790@hyderabad.bits-pilani.ac.in
 #SBATCH --mail-type=ALL
