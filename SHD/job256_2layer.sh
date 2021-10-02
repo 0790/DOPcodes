@@ -3,7 +3,7 @@
 #SBATCH --nodes=1
 #SBATCH -n 1
 #SBATCH --gres=gpu:1
-#SBATCH --mem 20G
+#SBATCH --mem 25G
 #SBATCH -t 1-00:00
 #SBATCH --job-name=SNN256_2lay
 #SBATCH -o SNN2layers256run2.out
