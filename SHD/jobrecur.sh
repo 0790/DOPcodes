@@ -6,9 +6,10 @@
 #SBATCH --mem 20G
 #SBATCH -t 1-00:00
 #SBATCH --job-name=RSNN
-#SBATCH -o RSNNlr-0.00005run3.out
+#SBATCH -o RSNNlr-0.00005/RSNNlr-0.00005run5.out
 #SBACTH -e slurm.%j.err
 #SBATCH --mail-user=f20180790@hyderabad.bits-pilani.ac.in
 #SBATCH --mail-type=ALL
 module load cuda-11.0.2-gcc-10.2.0-3wlbq6u
 srun python3 testrecurrent128.py
+
