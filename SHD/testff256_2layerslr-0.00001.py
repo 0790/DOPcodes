@@ -137,7 +137,7 @@ else:
 	torch.nn.init.uniform_(w3, a=-np.sqrt(2.0/N), b=np.sqrt(2.0/N))
 
 
-Nepochs = 1500  # 500, 150 for last run 
+Nepochs = 1000  # 500, 150 for last run 
 
 
 #read weights and loss from file, if empty, set pass to 0, else pass to 1 and put stored weights and histogram to local variables and  train
