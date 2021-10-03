@@ -81,7 +81,7 @@ plt.show()
 N = 128 #per layer
 Nin = 700 #input from 700 bushy cells
 Nout = 20 #0-9 in english and german
-alpha = 0.0001/2
+alpha = 0.001
 beta1 = 0.9
 beta2 = 0.999
 Nbatch = 256
@@ -118,9 +118,9 @@ loss_hist = []
 #https://pytorch.org/docs/stable/nn.init.html
 
 
-if os.path.isfile((basepath+"/trained_values/trainedrecur.pt")):
+if os.path.isfile((basepath+"/trained_values/trainedrecurlr-0.001.pt")):
 	print('The file is present.')
-	w1,w2,v1 = torch.load(basepath+'/trained_values/trainedrecur.pt')
+	w1,w2,v1 = torch.load(basepath+'/trained_values/trainedrecurlr-0.001.pt')
 	print(w1)
 	print(w2)
 	print(v1)
@@ -130,7 +130,7 @@ else:
 	torch.nn.init.uniform_(w2, a=-np.sqrt(2.0/N), b=np.sqrt(2.0/N))
 	torch.nn.init.uniform_(v1, a =-np.sqrt(2.0/N), b= np.sqrt(2.0/N))
 	print("Initialised with numbers from uniform distribution")
-Nepochs = 2000
+Nepochs = 1000
 
 
 import torch.autograd as auto
@@ -305,13 +305,13 @@ loss_hist.append(loss_list)
 print("Training accuracy: %.3f"%(accuracy(x_train,y_train)))
 print("Test accuracy: %.3f"%(accuracy(x_test,y_test)))
 
-torch.save([rw1,rw2,rv1] , basepath+'/trained_values/trainedrecur.pt')
-open_file = open(basepath+"/trained_values/trainedhistrecur.pkl","ab")
+torch.save([rw1,rw2,rv1] , basepath+'/trained_values/trainedrecurlr-0.001.pt')
+open_file = open(basepath+"/trained_values/trainedhistrecurlr-0.001.pkl","ab")
 pickle.dump(loss_list,open_file)
 print("\nFile list dumped\n")
 open_file.close()
 print("Saved in file")
-open_file = open(basepath+ "/trained_values/trainedhistrecur.pkl","rb")
+open_file = open(basepath+ "/trained_values/trainedhistrecurlr-0.001.pkl","rb")
 a = pickle.load(open_file)
 
 print("500 epochs recur round 2")
