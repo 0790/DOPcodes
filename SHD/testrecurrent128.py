@@ -94,7 +94,7 @@ taumem =  0.01
 tref = 0
 steep = 100
 
-t= 0.0005
+t= 0.001 #original was 0.0005
 T = 1.5
 Ntimesteps = 100
 
@@ -118,9 +118,9 @@ loss_hist = []
 #https://pytorch.org/docs/stable/nn.init.html
 
 
-if os.path.isfile((basepath+"/trained_values/trainedrecurlr-0.001.pt")):
+if os.path.isfile((basepath+"/trained_values/trainedrecurlr-0.001t-0.001.pt")):
 	print('The file is present.')
-	w1,w2,v1 = torch.load(basepath+'/trained_values/trainedrecurlr-0.001.pt')
+	w1,w2,v1 = torch.load(basepath+'/trained_values/trainedrecurlr-0.001t-0.001.pt')
 	print(w1)
 	print(w2)
 	print(v1)
@@ -305,13 +305,13 @@ loss_hist.append(loss_list)
 print("Training accuracy: %.3f"%(accuracy(x_train,y_train)))
 print("Test accuracy: %.3f"%(accuracy(x_test,y_test)))
 
-torch.save([rw1,rw2,rv1] , basepath+'/trained_values/trainedrecurlr-0.001.pt')
-open_file = open(basepath+"/trained_values/trainedhistrecurlr-0.001.pkl","ab")
+torch.save([rw1,rw2,rv1] , basepath+'/trained_values/trainedrecurlr-0.001t-0.001.pt')
+open_file = open(basepath+"/trained_values/trainedhistrecurlr-0.001t-0.001.pkl","ab")
 pickle.dump(loss_list,open_file)
 print("\nFile list dumped\n")
 open_file.close()
 print("Saved in file")
-open_file = open(basepath+ "/trained_values/trainedhistrecurlr-0.001.pkl","rb")
+open_file = open(basepath+ "/trained_values/trainedhistrecurlr-0.001t-0.001.pkl","rb")
 a = pickle.load(open_file)
 
 print("500 epochs recur round 2")
