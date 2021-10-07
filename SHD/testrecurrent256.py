@@ -130,7 +130,7 @@ else:
 	torch.nn.init.uniform_(w2, a=-np.sqrt(2.0/N), b=np.sqrt(2.0/N))
 	torch.nn.init.uniform_(v1, a =-np.sqrt(2.0/N), b= np.sqrt(2.0/N))
 	print("Initialised with numbers from uniform distribution")
-Nepochs = 1000
+Nepochs =500 #1000
 
 
 import torch.autograd as auto
