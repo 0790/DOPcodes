@@ -6,7 +6,7 @@
 #SBATCH --mem 20G
 #SBATCH -t 1-00:00
 #SBATCH --job-name=RSNN256
-#SBATCH -o RSNN256lr-0.001/RSNN256lr-0.001run2.out
+#SBATCH -o RSNN256lr-0.001t-0.001/RSNN256lr-0.001t-0.001run1.out
 #SBACTH -e slurm.%j.err
 #SBATCH --mail-user=f20180790@hyderabad.bits-pilani.ac.in
 #SBATCH --mail-type=ALL
