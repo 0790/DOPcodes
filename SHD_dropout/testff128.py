@@ -134,8 +134,7 @@ else:
 	torch.nn.init.uniform_(w2, a=-np.sqrt(2.0/N), b=np.sqrt(2.0/N))
 
 
-Nepochs =150  # 500, 150 for last run 
-
+Nepochs =150  # 500, 150 for last run
 
 #read weights and loss from file, if empty, set pass to 0, else pass to 1 and put stored weights and histogram to local variables and  train
 
@@ -162,11 +161,11 @@ class SurGrad(auto.Function):
 spikefunction = SurGrad.apply
 
 class SurGradDrop(auto.Function):
-	prob = 0.5 
+	prob = 0.5
 	@staticmethod
 	def forward(ctx,i):
 		binomial = torch.distributions.binomial.Binomial(probs=prob) #hidden layer spike to be removed with 50% probability 
-		di = i * binomial.sample(i.size()) * (1/prob) # 2 is 1/0.5, to scale properly 
+		di = i * binomial.sample(i.size()) * (1/prob) # 2 is 1/0.5, to scale properly
 		ctx.save_for_backward(di)
 		result = torch.zeros_like(di)
 		result[di>Uthres] = 1.0
@@ -175,7 +174,6 @@ class SurGradDrop(auto.Function):
 	@staticmethod
 	def backward(ctx, grad_output):
 		result, = ctx.saved_tensors #U is stored in results
-		result = result * (1/prob)
 		grad_input = grad_output.clone()
 		grad = grad_input/(steep*torch.abs(result) +1.0 )**2
 		return grad
@@ -241,7 +239,7 @@ def forwarddynamic(input,train=True):
 		z1 = z1_from_input[:,t]
 		if train:
 			outputlayer1 = spikefunctiondrop(Umem1)
-		else 
+		else:
 			outputlayer1 = spikefunction(Umem1)
 		resetspike = outputlayer1.detach() #what does this do?
 
@@ -344,7 +342,7 @@ print("\nFile list dumped\n")
 open_file.close()
 print("Saved in file")
 
-"""m1 = nn.Dropout(p=0.2) #input to hidden layer dropped with 20% probability 
-   m2 = nn.Dropout(p=0.5) #hidden to output layer dropped with 50% probability 
+"""m1 = nn.Dropout(p=0.2) #input to hidden layer dropped with 20% probability
+   m2 = nn.Dropout(p=0.5) #hidden to output layer dropped with 50% probability
    dw1 = m1(w1)
-   dw2 = m2(w2)""" 
+   dw2 = m2(w2)"""
