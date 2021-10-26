@@ -71,7 +71,7 @@ def sparse_data_generator_from_hdf5_spikes(X, y, batch_size, nb_steps, nb_units,
 	# compute discrete firing times
 	firing_times = X['times']
 	units_fired = X['units']
-    
+
 	time_bins = np.linspace(0, max_time, num=nb_steps)
 
 	if shuffle:
@@ -87,14 +87,13 @@ def sparse_data_generator_from_hdf5_spikes(X, y, batch_size, nb_steps, nb_units,
 			times = np.digitize(firing_times[idx], time_bins)
 			units = units_fired[idx]
 			batch = [bc for _ in range(len(times))]
-            
 			coo[0].extend(batch)
 			coo[1].extend(times)
 			coo[2].extend(units)
 
 		i = torch.LongTensor(coo).to(device)
 		v = torch.FloatTensor(np.ones(len(coo[0]))).to(device)
-    
+
 		X_batch = torch.sparse.FloatTensor(i, v, torch.Size([batch_size,nb_steps,nb_units])).to(device)
 		y_batch = torch.tensor(labels_[batch_index],device=device)
 
@@ -110,9 +109,9 @@ alpha   = float(np.exp(-time_step/tau_syn))
 beta    = float(np.exp(-time_step/tau_mem))
 weight_scale = 0.2
 
-w1 = torch.empty((nb_inputs, nb_hidden),  device=device, dtype=dtype, requires_grad=True)
-w2 = torch.empty((nb_hidden, nb_outputs), device=device, dtype=dtype, requires_grad=True)
-v1 = torch.empty((nb_hidden, nb_hidden), device=device, dtype=dtype, requires_grad=True)
+w1 = torch.empty((nb_inputs, nb_hidden),  device=device, dtype=datatype, requires_grad=True)
+w2 = torch.empty((nb_hidden, nb_outputs), device=device, dtype=datatype, requires_grad=True)
+v1 = torch.empty((nb_hidden, nb_hidden), device=device, dtype=datatype, requires_grad=True)
 loss_hist = []
 
 print("init done")
@@ -147,13 +146,13 @@ spike_fn  = SurrGradSpike.apply
 
 
 def run_snn(inputs):
-	syn = torch.zeros((batch_size,nb_hidden), device=device, dtype=dtype)
-	mem = torch.zeros((batch_size,nb_hidden), device=device, dtype=dtype)
+	syn = torch.zeros((batch_size,nb_hidden), device=device, dtype=datatype)
+	mem = torch.zeros((batch_size,nb_hidden), device=device, dtype=datatype)
 
 	mem_rec = []
 	spk_rec = []
 
-	out = torch.zeros((batch_size, nb_hidden), device=device, dtype=dtype)
+	out = torch.zeros((batch_size, nb_hidden), device=device, dtype=datatype)
 	h1_from_input = torch.einsum("abc,cd->abd", (inputs, w1))
 	for t in range(nb_steps):
 		h1 = h1_from_input[:,t] + torch.einsum("ab,bc->ac", (out, v1))
@@ -166,7 +165,6 @@ def run_snn(inputs):
 
 		mem_rec.append(mem)
 		spk_rec.append(out)
-        
 		mem = new_mem
 		syn = new_syn
 
@@ -175,8 +173,8 @@ def run_snn(inputs):
 
 	# Readout layer
 	h2= torch.einsum("abc,cd->abd", (spk_rec, w2))
-	flt = torch.zeros((batch_size,nb_outputs), device=device, dtype=dtype)
-	out = torch.zeros((batch_size,nb_outputs), device=device, dtype=dtype)
+	flt = torch.zeros((batch_size,nb_outputs), device=device, dtype=datatype)
+	out = torch.zeros((batch_size,nb_outputs), device=device, dtype=datatype)
 	out_rec = [out]
 	for t in range(nb_steps):
 		new_flt = alpha*flt +h2[:,t]
@@ -195,13 +193,13 @@ def run_snn(inputs):
 
 
 def train(x_data, y_data, lr=1e-3, nb_epochs=10):
-    
+
 	params = [w1,w2,v1]
 	optimizer = torch.optim.Adamax(params, lr=lr, betas=(0.9,0.999))
 
 	log_softmax_fn = nn.LogSoftmax(dim=1)
 	loss_fn = nn.NLLLoss()
-    
+
 	loss_hist = []
 	for e in range(nb_epochs):
 		local_loss = []
@@ -210,15 +208,15 @@ def train(x_data, y_data, lr=1e-3, nb_epochs=10):
 			_,spks=recs
 			m,_=torch.max(output,1)
 			log_p_y = log_softmax_fn(m)
-            
+
 			# Here we set up our regularizer loss
 			# The strength paramters here are merely a guess and there should be ample room for improvement by
 			# tuning these paramters.
 			reg_loss = 2e-6*torch.sum(spks) # L1 loss on total number of spikes
 			reg_loss += 2e-6*torch.mean(torch.sum(torch.sum(spks,dim=0),dim=0)**2) # L2 loss on spikes per neuron
-            
+
 			# Here we combine supervised loss and the regularizer
-			y_local = y_local.type(torch.LongTensor)
+			y_local = y_local.type(torch.cuda.LongTensor)
 			loss_val = loss_fn(log_p_y, y_local) + reg_loss
 
 			optimizer.zero_grad()
@@ -228,10 +226,8 @@ def train(x_data, y_data, lr=1e-3, nb_epochs=10):
 		mean_loss = np.mean(local_loss)
 		loss_hist.append(mean_loss)
 		print("Epoch %i: loss=%.5f"%(e+1,mean_loss))
-        
 	return loss_hist,params
-        
-        
+
 def compute_classification_accuracy(x_data, y_data):
 	""" Computes classification accuracy on supplied data in batches. """
 	accs = []

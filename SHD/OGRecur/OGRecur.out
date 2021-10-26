@@ -1,0 +1,2 @@
+slurmstepd: error: *** JOB 5145 ON gpunode2 CANCELLED AT 2021-10-26T08:50:22 ***
+slurmstepd: error: *** STEP 5145.0 ON gpunode2 CANCELLED AT 2021-10-26T08:50:22 ***
