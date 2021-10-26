@@ -78,10 +78,10 @@ for i,k in enumerate(idx):
 plt.show()
 """
 
-N = 128 #per layer
+N = 128 #per layer  #this is different
 Nin = 700 #input from 700 bushy cells
 Nout = 20 #0-9 in english and german
-alpha = 0.001
+alpha = 0.0002 #2e-4 #0.001
 beta1 = 0.9
 beta2 = 0.999
 Nbatch = 256
@@ -118,12 +118,10 @@ loss_hist = []
 #https://pytorch.org/docs/stable/nn.init.html
 
 
-if os.path.isfile((basepath+"/trained_values/trainedrecurlr-0.001t-0.001.pt")):
+if os.path.isfile((basepath+"/trained_values/trainedrecuroglr.pt")):
 	print('The file is present.')
-	w1,w2,v1 = torch.load(basepath+'/trained_values/trainedrecurlr-0.001t-0.001.pt')
-	print(w1)
-	print(w2)
-	print(v1)
+	w1,w2,v1 = torch.load(basepath+'/trained_values/trainedrecuroglr.pt')
+	
 else:
 	print("File not present for network with uniform weight initialisation") ;
 	torch.nn.init.uniform_(w1, a=-np.sqrt(2.0/Nin), b=np.sqrt(2.0/Nin)) #given as uniform distribution in papers, but normal distribution in spytorch code
@@ -215,7 +213,7 @@ def forwarddynamic(input):
 
 		Isynnext1 = lambd*Isyn1 + z1_recur # I[t+1] = lambda * I[t] + w1*inputspike + v1*previous timestep of spikes
 
-		Umemnext1 = (muh*Umem1+Isyn1)*(1-resetspike)  #according to SHD paper, not Surgrad notebook
+		Umemnext1 = (muh*Umem1+Isyn1)*(1.0-resetspike)  #according to SHD paper, not Surgrad notebook
 
 		Umem1 = Umemnext1
 		Isyn1 = Isynnext1
@@ -305,13 +303,13 @@ loss_hist.append(loss_list)
 print("Training accuracy: %.3f"%(accuracy(x_train,y_train)))
 print("Test accuracy: %.3f"%(accuracy(x_test,y_test)))
 
-torch.save([rw1,rw2,rv1] , basepath+'/trained_values/trainedrecurlr-0.001t-0.001.pt')
-open_file = open(basepath+"/trained_values/trainedhistrecurlr-0.001t-0.001.pkl","ab")
+torch.save([rw1,rw2,rv1] , basepath+'/trained_values/trainedrecuroglr.pt')
+open_file = open(basepath+"/trained_values/trainedhistrecuroglr.pkl","ab")
 pickle.dump(loss_list,open_file)
 print("\nFile list dumped\n")
 open_file.close()
 print("Saved in file")
-open_file = open(basepath+ "/trained_values/trainedhistrecurlr-0.001t-0.001.pkl","rb")
+open_file = open(basepath+ "/trained_values/trainedhistrecuroglr.pkl","rb")
 a = pickle.load(open_file)
 
 print("500 epochs recur round 2")
