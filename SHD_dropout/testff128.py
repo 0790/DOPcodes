@@ -87,7 +87,7 @@ plt.show()
 N = 128 #per layer
 Nin = 700 #input from 700 bushy cells
 Nout = 20 #0-9 in english and german
-alpha = 0.0001/2
+alpha = 0.001
 beta1 = 0.9
 beta2 = 0.999
 Nbatch = 256
@@ -159,13 +159,13 @@ class SurGrad(auto.Function):
 		return grad
 
 spikefunction = SurGrad.apply
-
+prob = 0.5
 class SurGradDrop(auto.Function):
-	prob = 0.5
 	@staticmethod
 	def forward(ctx,i):
-		binomial = torch.distributions.binomial.Binomial(probs=prob) #hidden layer spike to be removed with 50% probability 
-		di = i * binomial.sample(i.size()) * (1/prob) # 2 is 1/0.5, to scale properly
+		ber = torch.distributions.bernoulli.Bernoulli(probs=prob) #hidden layer spike to be removed with 50% probability
+		di = torch.FloatTensor(ber.sample(i.size())).to(device)
+		di = i * di * (1/prob) # 2 is 1/0.5, to scale properly
 		ctx.save_for_backward(di)
 		result = torch.zeros_like(di)
 		result[di>Uthres] = 1.0
@@ -278,7 +278,6 @@ def training(x , y , alpha= alpha , Nepochs = 10):
 	loss_record = []
 	for i in range(Nepochs):
 		local_loss = []
-		parametersd = [dw1,dw2]
 		for x_local, y_local in sparse_data_generator_from_hdf5_spikes(X = x,y = y,batch_size= Nbatch, nb_steps= Ntimesteps,nb_units= Nin,max_time= T):
 			output,records = forwarddynamic(x_local.to_dense())
 			_,spikes = records #this is used in regularization
