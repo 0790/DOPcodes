@@ -81,7 +81,8 @@ plt.show()
 N = 256 #per layer
 Nin = 700 #input from 700 bushy cells
 Nout = 20 #0-9 in english and german
-alpha = 0.001 #rest of the networks were done at 0.00005
+alpha = 0.0002 #from the code given by zenke
+#0.001 was the last one we tried #rest of the networks were done at 0.00005
 beta1 = 0.9
 beta2 = 0.999
 Nbatch = 256
@@ -118,9 +119,9 @@ loss_hist = []
 #https://pytorch.org/docs/stable/nn.init.html
 
 
-if os.path.isfile((basepath+"/trained_values/trainedrecur256lr-0.001t-0.001.pt")):
+if os.path.isfile((basepath+"/trained_values/trainedrecur256oglr-0.0002.pt")):
 	print('The file is present.')
-	w1,w2,v1 = torch.load(basepath+'/trained_values/trainedrecur256lr-0.001t-0.001.pt')
+	w1,w2,v1 = torch.load(basepath+'/trained_values/trainedrecur256oglr-0.0002.pt')
 	print(w1)
 	print(w2)
 	print(v1)
@@ -305,13 +306,13 @@ loss_hist.append(loss_list)
 print("Training accuracy: %.3f"%(accuracy(x_train,y_train)))
 print("Test accuracy: %.3f"%(accuracy(x_test,y_test)))
 
-torch.save([rw1,rw2,rv1] , basepath+'/trained_values/trainedrecur256lr-0.001t-0.001.pt')
-open_file = open(basepath+"/trained_values/trainedhistrecur256lr-0.001t-0.001.pkl","ab")
+torch.save([rw1,rw2,rv1] , basepath+'/trained_values/trainedrecur256oglr-0.0002.pt')
+open_file = open(basepath+"/trained_values/trainedhistrecur256oglr-0.0002.pkl","ab")
 pickle.dump(loss_list,open_file)
 print("\nFile list dumped\n")
 open_file.close()
 print("Saved in file")
-open_file = open(basepath+ "/trained_values/trainedhistrecur256lr-0.001t-0.001.pkl","rb")
+open_file = open(basepath+ "/trained_values/trainedhistrecur256oglr-0.0002.pkl","rb")
 a = pickle.load(open_file)
 
 print("1000 epochs recur round 1")
