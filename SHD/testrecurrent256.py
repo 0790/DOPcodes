@@ -95,7 +95,7 @@ taumem =  0.01
 tref = 0
 steep = 100
 
-t= 0.001#0.0005
+t= 0.001 #0.0005
 T = 1.5
 Ntimesteps = 100
 
@@ -131,7 +131,7 @@ else:
 	torch.nn.init.uniform_(w2, a=-np.sqrt(2.0/N), b=np.sqrt(2.0/N))
 	torch.nn.init.uniform_(v1, a =-np.sqrt(2.0/N), b= np.sqrt(2.0/N))
 	print("Initialised with numbers from uniform distribution")
-Nepochs =500 #1000
+Nepochs =250 #1000
 
 
 import torch.autograd as auto
