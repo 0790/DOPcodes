@@ -1,0 +1,296 @@
+/home/venkat/Unreliable_Synaptic_Transmission/Deepti/DOPcodes/SHD/dataset/shddataset/
+The file is present.
+tensor([[-0.5361, -0.6921,  0.0389,  ..., -0.4033, -0.6564, -0.3495],
+        [-0.8412, -0.4821, -0.3249,  ..., -0.3041, -0.8848, -0.4400],
+        [-0.6436, -0.9151, -0.3208,  ..., -0.1220, -0.8906, -0.5268],
+        ...,
+        [-0.1363, -0.7695, -0.2547,  ..., -0.0871, -0.0331, -0.8286],
+        [-0.1000, -0.5159, -0.1953,  ...,  0.0296, -0.1921, -0.2599],
+        [-0.2068, -0.6977, -0.4345,  ..., -0.0353, -0.2348, -0.7425]],
+       device='cuda:0', requires_grad=True)
+tensor([[-0.2290,  0.3224, -0.6639,  ...,  0.2029, -1.4092, -0.3169],
+        [-0.4815,  0.4756, -0.8664,  ..., -0.6497, -0.4872,  0.2915],
+        [-0.8049, -0.1173, -0.6359,  ..., -0.0577, -0.3260, -0.1553],
+        ...,
+        [ 0.5307, -0.1274, -0.0779,  ...,  0.2321, -1.4869,  0.1986],
+        [ 0.4324, -0.2401,  0.4217,  ...,  0.0842, -1.3347, -0.9102],
+        [-1.4595,  0.1923, -0.6083,  ..., -0.3080, -0.9132,  0.2934]],
+       device='cuda:0', requires_grad=True)
+tensor([[-0.2916,  0.0701,  0.1838,  ..., -1.5257, -1.5304, -0.1214],
+        [-1.1303, -0.1304,  0.0144,  ..., -1.2548, -2.3116,  0.1352],
+        [-0.3744, -0.2861, -0.1408,  ..., -0.3738, -0.5937, -0.1227],
+        ...,
+        [-0.0618, -0.4014, -0.1610,  ..., -0.3439,  0.0348,  0.0957],
+        [-1.0095, -0.6593, -0.0248,  ..., -2.3129, -0.6002, -0.1184],
+        [-1.0405, -0.4192, -0.1420,  ..., -1.4578, -1.7569,  0.1898]],
+       device='cuda:0', requires_grad=True)
+Epoch 1: loss=0.16692
+Epoch 2: loss=0.16282
+Epoch 3: loss=0.16290
+Epoch 4: loss=0.16171
+Epoch 5: loss=0.15157
+Epoch 6: loss=0.15622
+Epoch 7: loss=0.15983
+Epoch 8: loss=0.15704
+Epoch 9: loss=0.15801
+Epoch 10: loss=0.15644
+Trained for 10 epochs
+Training accuracy: 0.966
+Epoch 1: loss=0.16022
+Epoch 2: loss=0.15832
+Epoch 3: loss=0.16301
+Epoch 4: loss=0.16940
+Epoch 5: loss=0.15995
+Epoch 6: loss=0.15944
+Epoch 7: loss=0.16075
+Epoch 8: loss=0.16132
+Epoch 9: loss=0.16162
+Epoch 10: loss=0.14962
+Epoch 11: loss=0.16547
+Epoch 12: loss=0.16111
+Epoch 13: loss=0.16312
+Epoch 14: loss=0.15623
+Epoch 15: loss=0.15819
+Epoch 16: loss=0.17631
+Epoch 17: loss=0.16581
+Epoch 18: loss=0.16412
+Epoch 19: loss=0.14990
+Epoch 20: loss=0.17446
+Epoch 21: loss=0.15816
+Epoch 22: loss=0.15849
+Epoch 23: loss=0.16851
+Epoch 24: loss=0.15732
+Epoch 25: loss=0.17702
+Epoch 26: loss=0.15506
+Epoch 27: loss=0.15156
+Epoch 28: loss=0.16383
+Epoch 29: loss=0.16041
+Epoch 30: loss=0.16013
+Epoch 31: loss=0.17367
+Epoch 32: loss=0.17228
+Epoch 33: loss=0.15996
+Epoch 34: loss=0.17549
+Epoch 35: loss=0.15769
+Epoch 36: loss=0.16515
+Epoch 37: loss=0.16001
+Epoch 38: loss=0.15837
+Epoch 39: loss=0.14935
+Epoch 40: loss=0.15541
+Epoch 41: loss=0.16282
+Epoch 42: loss=0.17887
+Epoch 43: loss=0.15150
+Epoch 44: loss=0.15595
+Epoch 45: loss=0.16392
+Epoch 46: loss=0.15712
+Epoch 47: loss=0.15939
+Epoch 48: loss=0.15949
+Epoch 49: loss=0.15494
+Epoch 50: loss=0.15196
+Epoch 51: loss=0.15267
+Epoch 52: loss=0.16428
+Epoch 53: loss=0.16255
+Epoch 54: loss=0.15444
+Epoch 55: loss=0.16003
+Epoch 56: loss=0.16864
+Epoch 57: loss=0.15257
+Epoch 58: loss=0.17251
+Epoch 59: loss=0.16190
+Epoch 60: loss=0.15770
+Epoch 61: loss=0.17095
+Epoch 62: loss=0.17361
+Epoch 63: loss=0.15078
+Epoch 64: loss=0.15938
+Epoch 65: loss=0.15306
+Epoch 66: loss=0.16292
+Epoch 67: loss=0.15553
+Epoch 68: loss=0.15149
+Epoch 69: loss=0.16296
+Epoch 70: loss=0.15207
+Epoch 71: loss=0.16242
+Epoch 72: loss=0.16070
+Epoch 73: loss=0.16245
+Epoch 74: loss=0.15689
+Epoch 75: loss=0.16470
+Epoch 76: loss=0.15200
+Epoch 77: loss=0.15494
+Epoch 78: loss=0.15264
+Epoch 79: loss=0.16229
+Epoch 80: loss=0.15415
+Epoch 81: loss=0.15337
+Epoch 82: loss=0.15584
+Epoch 83: loss=0.16410
+Epoch 84: loss=0.15834
+Epoch 85: loss=0.16117
+Epoch 86: loss=0.14727
+Epoch 87: loss=0.14532
+Epoch 88: loss=0.15336
+Epoch 89: loss=0.15494
+Epoch 90: loss=0.16993
+Epoch 91: loss=0.15117
+Epoch 92: loss=0.15486
+Epoch 93: loss=0.15639
+Epoch 94: loss=0.14676
+Epoch 95: loss=0.16219
+Epoch 96: loss=0.15631
+Epoch 97: loss=0.15908
+Epoch 98: loss=0.16344
+Epoch 99: loss=0.15621
+Epoch 100: loss=0.15477
+Epoch 101: loss=0.14431
+Epoch 102: loss=0.17133
+Epoch 103: loss=0.15609
+Epoch 104: loss=0.14609
+Epoch 105: loss=0.14392
+Epoch 106: loss=0.15259
+Epoch 107: loss=0.15296
+Epoch 108: loss=0.15699
+Epoch 109: loss=0.15510
+Epoch 110: loss=0.14994
+Epoch 111: loss=0.15592
+Epoch 112: loss=0.15410
+Epoch 113: loss=0.15387
+Epoch 114: loss=0.14954
+Epoch 115: loss=0.16354
+Epoch 116: loss=0.16936
+Epoch 117: loss=0.16035
+Epoch 118: loss=0.14944
+Epoch 119: loss=0.16002
+Epoch 120: loss=0.15607
+Epoch 121: loss=0.14680
+Epoch 122: loss=0.17035
+Epoch 123: loss=0.16026
+Epoch 124: loss=0.15954
+Epoch 125: loss=0.15665
+Epoch 126: loss=0.14891
+Epoch 127: loss=0.15522
+Epoch 128: loss=0.16664
+Epoch 129: loss=0.15480
+Epoch 130: loss=0.15110
+Epoch 131: loss=0.15144
+Epoch 132: loss=0.15701
+Epoch 133: loss=0.14900
+Epoch 134: loss=0.16034
+Epoch 135: loss=0.15729
+Epoch 136: loss=0.15906
+Epoch 137: loss=0.14966
+Epoch 138: loss=0.16845
+Epoch 139: loss=0.15097
+Epoch 140: loss=0.15719
+Epoch 141: loss=0.17714
+Epoch 142: loss=0.16214
+Epoch 143: loss=0.16637
+Epoch 144: loss=0.16783
+Epoch 145: loss=0.15634
+Epoch 146: loss=0.15652
+Epoch 147: loss=0.14255
+Epoch 148: loss=0.15563
+Epoch 149: loss=0.15456
+Epoch 150: loss=0.16413
+Epoch 151: loss=0.17001
+Epoch 152: loss=0.15471
+Epoch 153: loss=0.14781
+Epoch 154: loss=0.16658
+Epoch 155: loss=0.14650
+Epoch 156: loss=0.15371
+Epoch 157: loss=0.15072
+Epoch 158: loss=0.16004
+Epoch 159: loss=0.15319
+Epoch 160: loss=0.14588
+Epoch 161: loss=0.15589
+Epoch 162: loss=0.15524
+Epoch 163: loss=0.15952
+Epoch 164: loss=0.15783
+Epoch 165: loss=0.15450
+Epoch 166: loss=0.16084
+Epoch 167: loss=0.15425
+Epoch 168: loss=0.16088
+Epoch 169: loss=0.14864
+Epoch 170: loss=0.15967
+Epoch 171: loss=0.17148
+Epoch 172: loss=0.15769
+Epoch 173: loss=0.14943
+Epoch 174: loss=0.16126
+Epoch 175: loss=0.15469
+Epoch 176: loss=0.14565
+Epoch 177: loss=0.15487
+Epoch 178: loss=0.17217
+Epoch 179: loss=0.15502
+Epoch 180: loss=0.14916
+Epoch 181: loss=0.16232
+Epoch 182: loss=0.15202
+Epoch 183: loss=0.16339
+Epoch 184: loss=0.15059
+Epoch 185: loss=0.14665
+Epoch 186: loss=0.15846
+Epoch 187: loss=0.15942
+Epoch 188: loss=0.15180
+Epoch 189: loss=0.15424
+Epoch 190: loss=0.16539
+Epoch 191: loss=0.14559
+Epoch 192: loss=0.15087
+Epoch 193: loss=0.15077
+Epoch 194: loss=0.16899
+Epoch 195: loss=0.15062
+Epoch 196: loss=0.15280
+Epoch 197: loss=0.15108
+Epoch 198: loss=0.14939
+Epoch 199: loss=0.15210
+Epoch 200: loss=0.14515
+Epoch 201: loss=0.15830
+Epoch 202: loss=0.14264
+Epoch 203: loss=0.14794
+Epoch 204: loss=0.14588
+Epoch 205: loss=0.16021
+Epoch 206: loss=0.14813
+Epoch 207: loss=0.14820
+Epoch 208: loss=0.14169
+Epoch 209: loss=0.15382
+Epoch 210: loss=0.15004
+Epoch 211: loss=0.14905
+Epoch 212: loss=0.16762
+Epoch 213: loss=0.15916
+Epoch 214: loss=0.14611
+Epoch 215: loss=0.15994
+Epoch 216: loss=0.13624
+Epoch 217: loss=0.14695
+Epoch 218: loss=0.15232
+Epoch 219: loss=0.15230
+Epoch 220: loss=0.15724
+Epoch 221: loss=0.15023
+Epoch 222: loss=0.15469
+Epoch 223: loss=0.15842
+Epoch 224: loss=0.15285
+Epoch 225: loss=0.15457
+Epoch 226: loss=0.15677
+Epoch 227: loss=0.15345
+Epoch 228: loss=0.15493
+Epoch 229: loss=0.15649
+Epoch 230: loss=0.14741
+Epoch 231: loss=0.14462
+Epoch 232: loss=0.15634
+Epoch 233: loss=0.16187
+Epoch 234: loss=0.14776
+Epoch 235: loss=0.15085
+Epoch 236: loss=0.14458
+Epoch 237: loss=0.14360
+Epoch 238: loss=0.14826
+Epoch 239: loss=0.15999
+Epoch 240: loss=0.14558
+Epoch 241: loss=0.15717
+Epoch 242: loss=0.15477
+Epoch 243: loss=0.16150
+Epoch 244: loss=0.15305
+Epoch 245: loss=0.15027
+Epoch 246: loss=0.15657
+Epoch 247: loss=0.15245
+Epoch 248: loss=0.14624
+Epoch 249: loss=0.14209
+Epoch 250: loss=0.14647
+Training accuracy: 0.967
+Test accuracy: 0.549
+
+File list dumped
+
+Saved in file
+1000 epochs recur round 1
+are new values in file?
