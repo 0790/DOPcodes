@@ -174,7 +174,7 @@ class SurGradDrop(auto.Function):
 		return result
 
 	@staticmethod
-	def backward_d(ctx, grad_output):
+	def backward(ctx, grad_output):
 		result, = ctx.saved_tensors #U is stored in results
 		result = result/(1-prob)
 		grad_input = grad_output.clone()
