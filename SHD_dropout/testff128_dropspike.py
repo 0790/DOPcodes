@@ -157,6 +157,7 @@ class SurGrad(auto.Function):
 		result, = ctx.saved_tensors #U is stored in results
 		grad_input = grad_output.clone()
 		grad = grad_input/(steep*torch.abs(result) +1.0 )**2
+		print("Normal")
 		return grad
 
 spikefunction = SurGrad.apply
@@ -178,6 +179,7 @@ class SurGradDrop(auto.Function):
 		result = result/(1-prob)
 		grad_input = grad_output.clone()
 		grad = grad_input/(steep*torch.abs(result) +1.0 )**2
+		print("In Drop")
 		return grad
 
 spikefunctiondrop = SurGradDrop.apply
@@ -230,7 +232,7 @@ def forwarddynamic(input,train=True):
 	Umemnext1 = torch.zeros((Nbatch,N), dtype= datatype , device = device)
 	Urecord1 = []
 	Spikerecord = []
-
+	print(train)
 
 	#hidden layer 1
 	outputlayer1 = torch.zeros((Nbatch,N), dtype= datatype , device = device)
@@ -240,10 +242,8 @@ def forwarddynamic(input,train=True):
 	for t in range(Ntimesteps):
 		z1 = z1_from_input[:,t]
 		if train:
-			print("Train")
 			outputlayer1 = spikefunctiondrop(Umem1)
 		else:
-			print("Test")
 			outputlayer1 = spikefunction(Umem1)
 		resetspike = outputlayer1.detach() #what does this do?
 
@@ -300,7 +300,7 @@ def training(x , y , alpha= alpha , Nepochs = 10):
 			loss = loss + reg
 			optim = torch.optim.Adamax(parameters, lr = alpha, betas = (beta1,beta2))
 			optim.zero_grad() #sets the gradient of optimised weights to 0. https://pytorch.org/docs/stable/generated/torch.optim.Adam.html
-			loss.backward_d()
+			loss.backward()
 			optim.step()
 			local_loss.append(loss.item())
 		mean_loss = np.mean(local_loss)
