@@ -87,7 +87,7 @@ plt.show()
 N = 128 #per layer
 Nin = 700 #input from 700 bushy cells
 Nout = 20 #0-9 in english and german
-alpha = 0.001
+alpha = 0.0005 #new value #0.001
 beta1 = 0.9
 beta2 = 0.999
 Nbatch = 256
