@@ -159,13 +159,13 @@ class SurGrad(auto.Function):
 		return grad
 
 spikefunction = SurGrad.apply
-prob = 0.5
+prob = 0.2
 class SurGradDrop(auto.Function):
 	@staticmethod
 	def forward(ctx,i):
-		ber = torch.distributions.bernoulli.Bernoulli(probs=prob) #hidden layer spike to be removed with 50% probability
+		ber = torch.distributions.bernoulli.Bernoulli(probs=1-prob) #hidden layer spike to be removed with 50% probability
 		di = torch.FloatTensor(ber.sample(i.size())).to(device)
-		di = i * di * (1/prob) # 2 is 1/0.5, to scale properly
+		di = i * di * (1/(1-prob)) 
 		ctx.save_for_backward(di)
 		result = torch.zeros_like(di)
 		result[di>Uthres] = 1.0
