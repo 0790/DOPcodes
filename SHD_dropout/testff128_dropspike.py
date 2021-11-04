@@ -132,9 +132,10 @@ if os.path.isfile((basepath+"/trained_values/traineddrop128.pt")):
 else:
 	torch.nn.init.uniform_(w1, a=-np.sqrt(2.0/Nin), b=np.sqrt(2.0/Nin)) #given as uniform distribution in papers, but normal distribution in spytorch code
 	torch.nn.init.uniform_(w2, a=-np.sqrt(2.0/N), b=np.sqrt(2.0/N))
+	print('Initialised')
 
 
-Nepochs =500  # 500, 150 for last run
+Nepochs =100  # 500, 150 for last run
 
 #read weights and loss from file, if empty, set pass to 0, else pass to 1 and put stored weights and histogram to local variables and  train
 
@@ -165,7 +166,7 @@ class SurGradDrop(auto.Function):
 	def forward(ctx,i):
 		ber = torch.distributions.bernoulli.Bernoulli(probs=1-prob) #hidden layer spike to be removed with 50% probability
 		di = torch.FloatTensor(ber.sample(i.size())).to(device)
-		di = i * di * (1/(1-prob)) 
+		di = i * di * (1/(1-prob))
 		ctx.save_for_backward(di)
 		result = torch.zeros_like(di)
 		result[di>Uthres] = 1.0
@@ -239,8 +240,10 @@ def forwarddynamic(input,train=True):
 	for t in range(Ntimesteps):
 		z1 = z1_from_input[:,t]
 		if train:
+			print("Train")
 			outputlayer1 = spikefunctiondrop(Umem1)
 		else:
+			print("Test")
 			outputlayer1 = spikefunction(Umem1)
 		resetspike = outputlayer1.detach() #what does this do?
 
