@@ -263,10 +263,12 @@ def training(x , y , alpha= alpha , Nepochs = 10):
 		local_loss = []
 		ber1 = torch.distributions.bernoulli.Bernoulli(probs=0.8)
 		ber2 = torch.distributions.bernoulli.Bernoulli(probs=prob) #hidden layer spike to be removed with 50% probability
-		d1 = torch.tensor(ber1.sample(w1size),requires_grad = True,dtype = datatype).to(device)
-		d2 = torch.tensor(ber2.sample(w2size),requires_grad = True,dtype = datatype).to(device)
+		d1 = torch.tensor(ber1.sample(w1size)).to(device)
+		d2 = torch.tensor(ber2.sample(w2size)).to(device)
 		dropw1 = w1 * d1 * (1/0.8)
+		dropw1 = torch.tensor(dropw1 ,requires_grad = True,dtype = datatype ).to(device)
 		dropw2 = w2 *d2 * (1/prob)
+		dropw2 = torch.tensor(dropw2 ,requires_grad = True,dtype = datatype ).to(device)
 		parameters = [dropw1,dropw2]
 		for x_local, y_local in sparse_data_generator_from_hdf5_spikes(X = x,y = y,batch_size= Nbatch, nb_steps= Ntimesteps,nb_units= Nin,max_time= T):
 			output,records = forwarddynamic(x_local.to_dense(), parameters)
