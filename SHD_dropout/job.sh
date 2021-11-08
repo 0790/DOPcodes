@@ -6,7 +6,7 @@
 #SBATCH --mem 20G
 #SBATCH -t 1-00:00
 #SBATCH --job-name=SNNdrop
-#SBATCH -o SNNDrop128/SNNDrop128-0.2lr-0.0005-1.out
+#SBATCH -o SNNDrop128/SNNDrop128-0.2lr-0.0005t-0.0005-1.out
 #SBACTH -e slurm.%j.err
 #SBATCH --mail-user=f20180790@hyderabad.bits-pilani.ac.in
 #SBATCH --mail-type=ALL

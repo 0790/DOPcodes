@@ -100,7 +100,7 @@ taumem =  0.01
 tref = 0
 steep = 100
 
-t= 0.001
+t= 0.001/2 #originally 0.001, making it smaller to check affect
 T = 1.5
 Ntimesteps = 100 #int(T/t) #check to 100 if nothing works
 
