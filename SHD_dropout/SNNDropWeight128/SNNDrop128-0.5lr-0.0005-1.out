@@ -1,0 +1,9 @@
+/home/venkat/Unreliable_Synaptic_Transmission/Deepti/DOPcodes/SHD_dropout/dataset/shddataset/
+made weight variables and loss histogram
+Traceback (most recent call last):
+  File "testff128_dropweights.py", line 321, in <module>
+    loss_list,_ = training(x_train, y_train)
+  File "testff128_dropweights.py", line 262, in training
+    d1 = torch.FloatTensor(ber1.sample(w1.size())).to(device)
+UnboundLocalError: local variable 'w1' referenced before assignment
+srun: error: gpunode1: task 0: Exited with exit code 1
