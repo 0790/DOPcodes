@@ -263,8 +263,8 @@ def training(x , y , alpha= alpha , Nepochs = 10):
 		local_loss = []
 		ber1 = torch.distributions.bernoulli.Bernoulli(probs=0.8)
 		ber2 = torch.distributions.bernoulli.Bernoulli(probs=prob) #hidden layer spike to be removed with 50% probability
-		d1 = torch.FloatTensor(ber1.sample(w1size)).to(device)
-		d2 = torch.FloatTensor(ber2.sample(w2size)).to(device)
+		d1 = torch.tensor(ber1.sample(w1size),requires_grad = True,dtype = datatype).to(device)
+		d2 = torch.tensor(ber2.sample(w2size),requires_grad = True,dtype = datatype).to(device)
 		dropw1 = w1 * d1 * (1/0.8)
 		dropw2 = w2 *d2 * (1/prob)
 		parameters = [dropw1,dropw2]
