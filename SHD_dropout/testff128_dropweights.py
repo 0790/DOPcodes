@@ -288,7 +288,7 @@ def training(x , y , alpha= alpha , Nepochs = 10):
 			loss = loss + reg
 			optim = torch.optim.Adamax(parameters, lr = alpha, betas = (beta1,beta2))
 			optim.zero_grad() #sets the gradient of optimised weights to 0. https://pytorch.org/docs/stable/generated/torch.optim.Adam.html
-			loss.backward_d()
+			loss.backward()
 			optim.step()
 			local_loss.append(loss.item())
 		
