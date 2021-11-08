@@ -236,7 +236,7 @@ def forwarddynamic(input,parameters=[w1,w2]):
 	Spikerecord = torch.stack(Spikerecord, dim=1)
 	#hidden unit to output layer, output layer is leaky integrator which don't spike
 	#purpose of this layer is to record the membrane potential of the last layer
-	z2 = torch.einsum("ijk,kl->ijl" , (Spikerecord , drop w2) )
+	z2 = torch.einsum("ijk,kl->ijl" , (Spikerecord , dropw2) )
 	Isyn2 = torch.zeros((Nbatch,Nout), dtype= datatype , device = device)
 	Umem2 = torch.zeros((Nbatch,Nout), dtype= datatype , device = device)
 	output_potential = [Umem2]
