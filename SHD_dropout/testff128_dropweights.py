@@ -160,25 +160,7 @@ class SurGrad(auto.Function):
 
 spikefunction = SurGrad.apply
 prob = 0.2
-class SurGradDrop(auto.Function):
-	@staticmethod
-	def forward(ctx,i):
-		ber = torch.distributions.bernoulli.Bernoulli(probs=1-prob) #hidden layer spike to be removed with 50% probability
-		di = torch.FloatTensor(ber.sample(i.size())).to(device)
-		di = i * di * (1/(1-prob)) 
-		ctx.save_for_backward(di)
-		result = torch.zeros_like(di)
-		result[di>Uthres] = 1.0
-		return result
 
-	@staticmethod
-	def backward_d(ctx, grad_output):
-		result, = ctx.saved_tensors #U is stored in results
-		grad_input = grad_output.clone()
-		grad = grad_input/(steep*torch.abs(result) +1.0 )**2
-		return grad
-
-spikefunctiondrop = SurGradDrop.apply
 
 
 
@@ -220,7 +202,7 @@ def sparse_data_generator_from_hdf5_spikes(X, y, batch_size, nb_steps, nb_units,
 
 
 #forward pass for the SNN
-def forwarddynamic(input,train=True):
+def forwarddynamic(input,parameters=[w1,w2]):
 	Isyn1 = torch.zeros((Nbatch,N), dtype= datatype , device = device)
 	Umem1 = torch.zeros((Nbatch,N), dtype= datatype , device = device)
 	#membrane potential and synaptic current will have same dimensions as the weights.T in a mini batch  gradient descent
@@ -229,10 +211,10 @@ def forwarddynamic(input,train=True):
 	Urecord1 = []
 	Spikerecord = []
 
-
+	dropw1,dropw2 = parameters
 	#hidden layer 1
 	outputlayer1 = torch.zeros((Nbatch,N), dtype= datatype , device = device)
-	z1_from_input = torch.einsum("ijk,kl->ijl" , (input, w1))
+	z1_from_input = torch.einsum("ijk,kl->ijl" , (input, dropw1))
 	"""i gives the spike train number, j and k describe the firing time and the neuron unit which fires. k and l describes the dimesnions of weight matrix. k is
 	the index of multiplication ==> dot product"""
 	for t in range(Ntimesteps):
@@ -254,7 +236,7 @@ def forwarddynamic(input,train=True):
 	Spikerecord = torch.stack(Spikerecord, dim=1)
 	#hidden unit to output layer, output layer is leaky integrator which don't spike
 	#purpose of this layer is to record the membrane potential of the last layer
-	z2 = torch.einsum("ijk,kl->ijl" , (Spikerecord , w2) )
+	z2 = torch.einsum("ijk,kl->ijl" , (Spikerecord , drop w2) )
 	Isyn2 = torch.zeros((Nbatch,Nout), dtype= datatype , device = device)
 	Umem2 = torch.zeros((Nbatch,Nout), dtype= datatype , device = device)
 	output_potential = [Umem2]
@@ -269,14 +251,19 @@ def forwarddynamic(input,train=True):
 	return output_potential , records
 
 def training(x , y , alpha= alpha , Nepochs = 10):
-	parameters = [w1,w2]
+	#parameters = [w1,w2]
 
 	#using softmax function for negative likelihood loss calculation
 	loss_record = []
 	for i in range(Nepochs):
 		local_loss = []
+		dropvalue = torch.empty
+
+
+
+		parameters = [dropw1,dropw2]
 		for x_local, y_local in sparse_data_generator_from_hdf5_spikes(X = x,y = y,batch_size= Nbatch, nb_steps= Ntimesteps,nb_units= Nin,max_time= T):
-			output,records = forwarddynamic(x_local.to_dense())
+			output,records = forwarddynamic(x_local.to_dense(), parameters)
 			_,spikes = records #this is used in regularization
 			#https://pytorch.org/docs/stable/generated/torch.max.html
 			maximum,_ = torch.max(output,dim =1)  #calculates maximum membrane potential in the entire duration
@@ -296,6 +283,10 @@ def training(x , y , alpha= alpha , Nepochs = 10):
 			loss.backward_d()
 			optim.step()
 			local_loss.append(loss.item())
+		
+		#update the original weights with the undropped changed ones
+		w1 = 
+		w2 = 
 		mean_loss = np.mean(local_loss)
 		loss_record.append(mean_loss)
 		print("Epoch %i: loss=%.5f"%(i+1,mean_loss))
@@ -304,8 +295,9 @@ def training(x , y , alpha= alpha , Nepochs = 10):
 
 def accuracy(x,y):
         acc = []
+        
         for x_local, y_local in sparse_data_generator_from_hdf5_spikes(X =x,y= y,batch_size = Nbatch, nb_steps = Ntimesteps, nb_units = Nin, max_time = T,shuffle=False):
-                output,_ = forwarddynamic(x_local.to_dense(), train = False)
+                output,_ = forwarddynamic(x_local.to_dense())
                 maximum,_ = torch.max(output,dim =1)  #calculates maximum membrane potential in the entire duration
                 _,y_unit = torch.max(maximum,1) #the unit which had maximu
                 tmp = np.mean((y_local==y_unit).detach().cpu().numpy()) # compare to labels

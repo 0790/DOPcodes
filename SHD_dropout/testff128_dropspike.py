@@ -165,9 +165,9 @@ prob = 0.2
 class SurGradDrop(auto.Function):
 	@staticmethod
 	def forward(ctx,i):
-		ber = torch.distributions.bernoulli.Bernoulli(probs=1-prob) #hidden layer spike to be removed with 50% probability
+		ber = torch.distributions.bernoulli.Bernoulli(probs=prob) #hidden layer spike to be removed with 20% probability
 		di = torch.FloatTensor(ber.sample(i.size())).to(device)
-		di = i * di * (1/(1-prob))
+		di = i * di * (1/(prob))
 		ctx.save_for_backward(di)
 		result = torch.zeros_like(di)
 		result[di>Uthres] = 1.0
@@ -179,7 +179,7 @@ class SurGradDrop(auto.Function):
 		result = result/(1-prob)
 		grad_input = grad_output.clone()
 		grad = grad_input/(steep*torch.abs(result) +1.0 )**2
-		print("In Drop")
+		
 		return grad
 
 spikefunctiondrop = SurGradDrop.apply
@@ -232,7 +232,7 @@ def forwarddynamic(input,train=True):
 	Umemnext1 = torch.zeros((Nbatch,N), dtype= datatype , device = device)
 	Urecord1 = []
 	Spikerecord = []
-	print(train)
+	
 
 	#hidden layer 1
 	outputlayer1 = torch.zeros((Nbatch,N), dtype= datatype , device = device)
