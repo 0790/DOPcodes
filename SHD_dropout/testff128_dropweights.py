@@ -126,9 +126,9 @@ print("made weight variables and loss histogram")
 
 
 
-if os.path.isfile((basepath+"/trained_values/traineddrop128.pt")):
+if os.path.isfile((basepath+"/trained_values/traineddropweight128.pt")):
 	print('The file is present.')
-	w1,w2 = torch.load(basepath+'/trained_values/traineddrop128.pt')
+	w1,w2 = torch.load(basepath+'/trained_values/traineddropweight128.pt')
 else:
 	torch.nn.init.uniform_(w1, a=-np.sqrt(2.0/Nin), b=np.sqrt(2.0/Nin)) #given as uniform distribution in papers, but normal distribution in spytorch code
 	torch.nn.init.uniform_(w2, a=-np.sqrt(2.0/N), b=np.sqrt(2.0/N))
@@ -249,7 +249,7 @@ def forwarddynamic(input,parameters=[w1,w2]):
 	output_potential = torch.stack(output_potential,dim=1)
 	records = [Urecord1 , Spikerecord]
 	return output_potential , records
-
+prob = 0.5
 def training(x , y , alpha= alpha , Nepochs = 10):
 	#parameters = [w1,w2]
 
@@ -257,10 +257,12 @@ def training(x , y , alpha= alpha , Nepochs = 10):
 	loss_record = []
 	for i in range(Nepochs):
 		local_loss = []
-		dropvalue = torch.empty
-
-
-
+		ber1 = torch.distributions.bernoulli.Bernoulli(probs=0.8)
+		ber2 = torch.distributions.bernoulli.Bernoulli(probs=prob) #hidden layer spike to be removed with 50% probability
+		d1 = torch.FloatTensor(ber1.sample(w1.size())).to(device)
+		d2 = torch.FloatTensor(ber2.sample(w2.size())).to(device)
+		dropw1 = w1 * d1 * (1/0.8)
+		dropw2 = w2 *d2 * (1/prob)
 		parameters = [dropw1,dropw2]
 		for x_local, y_local in sparse_data_generator_from_hdf5_spikes(X = x,y = y,batch_size= Nbatch, nb_steps= Ntimesteps,nb_units= Nin,max_time= T):
 			output,records = forwarddynamic(x_local.to_dense(), parameters)
@@ -285,8 +287,12 @@ def training(x , y , alpha= alpha , Nepochs = 10):
 			local_loss.append(loss.item())
 		
 		#update the original weights with the undropped changed ones
-		w1 = 
-		w2 = 
+		r1 = torch.ones((Nin,N), dtype = datatype , device = device , requires_grad= False)
+		r2 = torch.ones((N,Nout), dtype = datatype , device = device , requires_grad= False)
+		r1 = r1 - d1
+		r2 = r2 - d2
+		w1 = r1*w1 + torch.div((dropw1 + torch.mul(d1*w1,i) ),(i+1))
+		w2 = r2*w2 + torch.div((dropw2 + torch.mul(d2*w2,i) ),(i+1)) #r1*w1 has elements that were dropped, so no change to those weight values
 		mean_loss = np.mean(local_loss)
 		loss_record.append(mean_loss)
 		print("Epoch %i: loss=%.5f"%(i+1,mean_loss))
@@ -323,8 +329,8 @@ loss_list,[rw1,rw2] = training(x_train, y_train , Nepochs = Nepochs)
 loss_hist.append(loss_list)
 print("Training accuracy: %.3f"%(accuracy(x_train,y_train)))
 print("Test accuracy: %.3f"%(accuracy(x_test,y_test)))
-torch.save([rw1,rw2] , basepath+'/trained_values/traineddrop128.pt')
-open_file = open((basepath+"/trained_values/trainedhistdrop128.pkl"),"ab")
+torch.save([rw1,rw2] , basepath+'/trained_values/traineddropweight128.pt')
+open_file = open((basepath+"/trained_values/trainedhistdropweight128.pkl"),"ab")
 pickle.dump(loss_list,open_file)
 print("\nFile list dumped\n")
 open_file.close()
