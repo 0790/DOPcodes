@@ -258,6 +258,8 @@ def training(x , y , alpha= alpha , Nepochs = 10):
 	#using softmax function for negative likelihood loss calculation
 	loss_record = []
 	for i in range(Nepochs):
+		global w1
+		global w2
 		local_loss = []
 		ber1 = torch.distributions.bernoulli.Bernoulli(probs=0.8)
 		ber2 = torch.distributions.bernoulli.Bernoulli(probs=prob) #hidden layer spike to be removed with 50% probability
