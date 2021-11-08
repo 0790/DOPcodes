@@ -250,6 +250,8 @@ def forwarddynamic(input,parameters=[w1,w2]):
 	records = [Urecord1 , Spikerecord]
 	return output_potential , records
 prob = 0.5
+w1size = w1.size()
+w2size = w2.size()
 def training(x , y , alpha= alpha , Nepochs = 10):
 	#parameters = [w1,w2]
 
@@ -259,8 +261,8 @@ def training(x , y , alpha= alpha , Nepochs = 10):
 		local_loss = []
 		ber1 = torch.distributions.bernoulli.Bernoulli(probs=0.8)
 		ber2 = torch.distributions.bernoulli.Bernoulli(probs=prob) #hidden layer spike to be removed with 50% probability
-		d1 = torch.FloatTensor(ber1.sample(w1.size())).to(device)
-		d2 = torch.FloatTensor(ber2.sample(w2.size())).to(device)
+		d1 = torch.FloatTensor(ber1.sample(w1size)).to(device)
+		d2 = torch.FloatTensor(ber2.sample(w2size)).to(device)
 		dropw1 = w1 * d1 * (1/0.8)
 		dropw2 = w2 *d2 * (1/prob)
 		parameters = [dropw1,dropw2]
@@ -293,6 +295,7 @@ def training(x , y , alpha= alpha , Nepochs = 10):
 		r2 = r2 - d2
 		w1 = r1*w1 + torch.div((dropw1 + torch.mul(d1*w1,i) ),(i+1))
 		w2 = r2*w2 + torch.div((dropw2 + torch.mul(d2*w2,i) ),(i+1)) #r1*w1 has elements that were dropped, so no change to those weight values
+		parameters = [w1,w2]
 		mean_loss = np.mean(local_loss)
 		loss_record.append(mean_loss)
 		print("Epoch %i: loss=%.5f"%(i+1,mean_loss))
