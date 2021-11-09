@@ -293,12 +293,13 @@ def training(x , y , alpha= alpha , Nepochs = 10):
 			local_loss.append(loss.item())
 		
 		#update the original weights with the undropped changed ones
-		r1 = torch.ones((Nin,N), dtype = datatype , device = device , requires_grad= False)
+		'''r1 = torch.ones((Nin,N), dtype = datatype , device = device , requires_grad= False)
 		r2 = torch.ones((N,Nout), dtype = datatype , device = device , requires_grad= False)
 		r1 = r1 - d1
 		r2 = r2 - d2
 		w1 = r1*w1 + torch.div((dropw1 + torch.mul(d1*w1,i) ),(i+1))
 		w2 = r2*w2 + torch.div((dropw2 + torch.mul(d2*w2,i) ),(i+1)) #r1*w1 has elements that were dropped, so no change to those weight values
+		'''
 		parameters = [w1,w2]
 		mean_loss = np.mean(local_loss)
 		loss_record.append(mean_loss)
