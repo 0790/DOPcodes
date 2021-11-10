@@ -161,7 +161,7 @@ class SurGrad(auto.Function):
 		return grad
 
 spikefunction = SurGrad.apply
-prob = 0.2
+prob = 0.8
 class SurGradDrop(auto.Function):
 	@staticmethod
 	def forward(ctx,i):

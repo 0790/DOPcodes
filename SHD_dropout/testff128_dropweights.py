@@ -134,7 +134,7 @@ else:
 	torch.nn.init.uniform_(w2, a=-np.sqrt(2.0/N), b=np.sqrt(2.0/N))
 
 
-Nepochs =500  # 500, 150 for last run
+Nepochs =100  # 500, 150 for last run
 
 #read weights and loss from file, if empty, set pass to 0, else pass to 1 and put stored weights and histogram to local variables and  train
 
@@ -254,7 +254,8 @@ w1size = w1.size()
 w2size = w2.size()
 def training(x , y , alpha= alpha , Nepochs = 10):
 	#parameters = [w1,w2]
-
+	sdw1 = torch.empty((Nin,N), dtype = datatype , device = device , requires_grad= True) #require_grad = true to record the operations on the weight matrix
+	sdw2 = torch.empty((N,Nout), dtype = datatype , device = device , requires_grad= True)
 	#using softmax function for negative likelihood loss calculation
 	loss_record = []
 	for i in range(Nepochs):
@@ -300,10 +301,14 @@ def training(x , y , alpha= alpha , Nepochs = 10):
 		w1 = r1*w1 + torch.div((dropw1 + torch.mul(d1*w1,i) ),(i+1))
 		w2 = r2*w2 + torch.div((dropw2 + torch.mul(d2*w2,i) ),(i+1)) #r1*w1 has elements that were dropped, so no change to those weight values
 		'''
-		parameters = [w1,w2]
+		sdw1 = sdw1 + dropw1
+		sdw2 = sdw2 + dropw2
 		mean_loss = np.mean(local_loss)
 		loss_record.append(mean_loss)
 		print("Epoch %i: loss=%.5f"%(i+1,mean_loss))
+	w1 = sdw1 / Nepochs 
+	w2 = sdw2 / Nepochs
+	parameters = [w1,w2]
 	return loss_record,parameters
 
 
