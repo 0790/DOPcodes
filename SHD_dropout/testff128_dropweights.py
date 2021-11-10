@@ -249,7 +249,7 @@ def forwarddynamic(input,parameters=[w1,w2]):
 	output_potential = torch.stack(output_potential,dim=1)
 	records = [Urecord1 , Spikerecord]
 	return output_potential , records
-prob = 0.8
+prob = 0.1
 w1size = w1.size()
 w2size = w2.size()
 def training(x , y , alpha= alpha , Nepochs = 10):
