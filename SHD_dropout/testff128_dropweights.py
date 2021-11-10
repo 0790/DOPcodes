@@ -159,7 +159,7 @@ class SurGrad(auto.Function):
 		return grad
 
 spikefunction = SurGrad.apply
-prob = 0.2
+
 
 
 
@@ -249,7 +249,7 @@ def forwarddynamic(input,parameters=[w1,w2]):
 	output_potential = torch.stack(output_potential,dim=1)
 	records = [Urecord1 , Spikerecord]
 	return output_potential , records
-prob = 0.5
+prob = 0.8
 w1size = w1.size()
 w2size = w2.size()
 def training(x , y , alpha= alpha , Nepochs = 10):
@@ -262,7 +262,7 @@ def training(x , y , alpha= alpha , Nepochs = 10):
 		global w1
 		global w2
 		local_loss = []
-		ber1 = torch.distributions.bernoulli.Bernoulli(probs=0.8)
+		ber1 = torch.distributions.bernoulli.Bernoulli(probs=1)
 		ber2 = torch.distributions.bernoulli.Bernoulli(probs=prob) #hidden layer spike to be removed with 50% probability
 		d1 = torch.tensor(ber1.sample(w1size)).to(device)
 		d2 = torch.tensor(ber2.sample(w2size)).to(device)
