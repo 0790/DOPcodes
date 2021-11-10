@@ -1,0 +1,128 @@
+/home/venkat/Unreliable_Synaptic_Transmission/Deepti/DOPcodes/SHD_dropout/dataset/shddataset/
+made weight variables and loss histogram
+Epoch 1: loss=5.90282
+Epoch 2: loss=5.85692
+Epoch 3: loss=5.24683
+Epoch 4: loss=6.23995
+Epoch 5: loss=5.92087
+Epoch 6: loss=6.00808
+Epoch 7: loss=5.40784
+Epoch 8: loss=6.17144
+Epoch 9: loss=5.79696
+Epoch 10: loss=5.99582
+Trained for 10 epochs
+Training accuracy: 0.046
+Epoch 1: loss=2.97580
+Epoch 2: loss=3.13554
+Epoch 3: loss=3.09674
+Epoch 4: loss=3.09829
+Epoch 5: loss=3.12859
+Epoch 6: loss=3.01460
+Epoch 7: loss=3.04672
+Epoch 8: loss=3.06792
+Epoch 9: loss=3.02283
+Epoch 10: loss=3.07397
+Epoch 11: loss=3.01670
+Epoch 12: loss=2.99302
+Epoch 13: loss=3.00951
+Epoch 14: loss=3.04242
+Epoch 15: loss=3.02447
+Epoch 16: loss=3.08612
+Epoch 17: loss=3.06427
+Epoch 18: loss=3.05000
+Epoch 19: loss=3.03549
+Epoch 20: loss=3.02070
+Epoch 21: loss=3.01846
+Epoch 22: loss=3.05440
+Epoch 23: loss=3.04924
+Epoch 24: loss=3.03203
+Epoch 25: loss=3.09212
+Epoch 26: loss=3.06115
+Epoch 27: loss=2.97022
+Epoch 28: loss=3.10669
+Epoch 29: loss=2.98540
+Epoch 30: loss=3.07432
+Epoch 31: loss=3.00872
+Epoch 32: loss=3.09328
+Epoch 33: loss=3.05743
+Epoch 34: loss=3.14167
+Epoch 35: loss=3.06478
+Epoch 36: loss=3.07984
+Epoch 37: loss=3.04927
+Epoch 38: loss=2.98871
+Epoch 39: loss=3.16958
+Epoch 40: loss=3.00673
+Epoch 41: loss=3.09692
+Epoch 42: loss=3.13160
+Epoch 43: loss=3.11378
+Epoch 44: loss=2.97826
+Epoch 45: loss=3.01211
+Epoch 46: loss=3.03742
+Epoch 47: loss=3.00791
+Epoch 48: loss=2.95987
+Epoch 49: loss=3.00807
+Epoch 50: loss=3.00654
+Epoch 51: loss=3.09704
+Epoch 52: loss=3.01183
+Epoch 53: loss=2.99152
+Epoch 54: loss=3.02314
+Epoch 55: loss=2.97213
+Epoch 56: loss=3.01804
+Epoch 57: loss=3.07107
+Epoch 58: loss=3.00406
+Epoch 59: loss=3.01961
+Epoch 60: loss=3.03868
+Epoch 61: loss=3.09820
+Epoch 62: loss=3.03080
+Epoch 63: loss=3.00591
+Epoch 64: loss=2.99784
+Epoch 65: loss=3.12534
+Epoch 66: loss=3.05386
+Epoch 67: loss=3.03512
+Epoch 68: loss=2.98767
+Epoch 69: loss=3.02515
+Epoch 70: loss=3.03233
+Epoch 71: loss=3.00218
+Epoch 72: loss=3.00119
+Epoch 73: loss=3.02032
+Epoch 74: loss=3.02192
+Epoch 75: loss=3.04246
+Epoch 76: loss=3.04684
+Epoch 77: loss=2.99641
+Epoch 78: loss=3.13260
+Epoch 79: loss=3.03407
+Epoch 80: loss=3.04028
+Epoch 81: loss=2.99311
+Epoch 82: loss=3.02865
+Epoch 83: loss=3.06379
+Epoch 84: loss=3.02807
+Epoch 85: loss=3.11968
+Epoch 86: loss=3.03958
+Epoch 87: loss=3.08987
+Epoch 88: loss=2.93731
+Epoch 89: loss=2.98112
+Epoch 90: loss=3.02744
+Epoch 91: loss=2.99520
+Epoch 92: loss=2.97524
+Epoch 93: loss=2.97375
+Epoch 94: loss=3.03625
+Epoch 95: loss=3.06259
+Epoch 96: loss=3.03175
+Epoch 97: loss=3.06464
+Epoch 98: loss=3.09089
+Epoch 99: loss=3.00539
+Epoch 100: loss=3.14581
+Training accuracy: 0.046
+Test accuracy: 0.039
+
+File list dumped
+
+Saved in file
+testff128_dropweights.py:267: UserWarning: To copy construct from a tensor, it is recommended to use sourceTensor.clone().detach() or sourceTensor.clone().detach().requires_grad_(True), rather than torch.tensor(sourceTensor).
+  d1 = torch.tensor(ber1.sample(w1size)).to(device)
+testff128_dropweights.py:268: UserWarning: To copy construct from a tensor, it is recommended to use sourceTensor.clone().detach() or sourceTensor.clone().detach().requires_grad_(True), rather than torch.tensor(sourceTensor).
+  d2 = torch.tensor(ber2.sample(w2size)).to(device)
+testff128_dropweights.py:270: UserWarning: To copy construct from a tensor, it is recommended to use sourceTensor.clone().detach() or sourceTensor.clone().detach().requires_grad_(True), rather than torch.tensor(sourceTensor).
+  dropw1 = torch.tensor(dropw1 ,requires_grad = True,dtype = datatype ).to(device)
+testff128_dropweights.py:272: UserWarning: To copy construct from a tensor, it is recommended to use sourceTensor.clone().detach() or sourceTensor.clone().detach().requires_grad_(True), rather than torch.tensor(sourceTensor).
+  dropw2 = torch.tensor(dropw2 ,requires_grad = True,dtype = datatype ).to(device)
