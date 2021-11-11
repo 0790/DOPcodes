@@ -1,0 +1,129 @@
+/home/venkat/Unreliable_Synaptic_Transmission/Deepti/DOPcodes/SHD_dropout/dataset/shddataset/
+made weight variables and loss histogram
+The file is present.
+Epoch 1: loss=17.56768
+Epoch 2: loss=17.51243
+Epoch 3: loss=17.64638
+Epoch 4: loss=17.47266
+Epoch 5: loss=17.57718
+Epoch 6: loss=17.43926
+Epoch 7: loss=17.56640
+Epoch 8: loss=17.44711
+Epoch 9: loss=17.74222
+Epoch 10: loss=17.56423
+Trained for 10 epochs
+Training accuracy: 0.064
+Epoch 1: loss=6.55907
+Epoch 2: loss=7.05603
+Epoch 3: loss=6.59627
+Epoch 4: loss=7.25870
+Epoch 5: loss=6.59145
+Epoch 6: loss=7.09223
+Epoch 7: loss=6.76077
+Epoch 8: loss=6.86790
+Epoch 9: loss=6.75092
+Epoch 10: loss=6.60879
+Epoch 11: loss=6.60762
+Epoch 12: loss=6.68979
+Epoch 13: loss=6.70700
+Epoch 14: loss=11.33161
+Epoch 15: loss=6.72603
+Epoch 16: loss=7.00870
+Epoch 17: loss=6.56728
+Epoch 18: loss=6.54638
+Epoch 19: loss=9.25576
+Epoch 20: loss=6.64649
+Epoch 21: loss=6.70873
+Epoch 22: loss=6.77976
+Epoch 23: loss=6.86074
+Epoch 24: loss=6.72492
+Epoch 25: loss=6.63070
+Epoch 26: loss=6.61436
+Epoch 27: loss=6.65695
+Epoch 28: loss=6.59942
+Epoch 29: loss=6.63394
+Epoch 30: loss=7.10242
+Epoch 31: loss=7.36676
+Epoch 32: loss=6.79830
+Epoch 33: loss=6.59309
+Epoch 34: loss=6.56016
+Epoch 35: loss=7.32294
+Epoch 36: loss=6.59795
+Epoch 37: loss=6.58264
+Epoch 38: loss=7.12865
+Epoch 39: loss=6.79609
+Epoch 40: loss=6.65854
+Epoch 41: loss=7.01134
+Epoch 42: loss=6.57813
+Epoch 43: loss=6.54569
+Epoch 44: loss=6.69589
+Epoch 45: loss=6.55093
+Epoch 46: loss=6.87229
+Epoch 47: loss=6.73189
+Epoch 48: loss=6.69905
+Epoch 49: loss=6.83440
+Epoch 50: loss=6.64813
+Epoch 51: loss=6.58640
+Epoch 52: loss=6.59345
+Epoch 53: loss=7.01070
+Epoch 54: loss=6.94555
+Epoch 55: loss=6.80574
+Epoch 56: loss=6.98472
+Epoch 57: loss=6.95366
+Epoch 58: loss=7.18941
+Epoch 59: loss=6.61796
+Epoch 60: loss=6.54925
+Epoch 61: loss=7.23559
+Epoch 62: loss=6.73965
+Epoch 63: loss=7.07411
+Epoch 64: loss=6.86846
+Epoch 65: loss=6.62826
+Epoch 66: loss=6.57109
+Epoch 67: loss=6.59677
+Epoch 68: loss=6.71681
+Epoch 69: loss=6.79668
+Epoch 70: loss=6.81622
+Epoch 71: loss=7.27227
+Epoch 72: loss=6.81275
+Epoch 73: loss=6.94919
+Epoch 74: loss=6.90746
+Epoch 75: loss=6.55093
+Epoch 76: loss=7.01341
+Epoch 77: loss=7.42266
+Epoch 78: loss=6.94552
+Epoch 79: loss=8.00486
+Epoch 80: loss=8.18194
+Epoch 81: loss=7.38160
+Epoch 82: loss=6.55530
+Epoch 83: loss=6.86626
+Epoch 84: loss=6.66804
+Epoch 85: loss=6.86004
+Epoch 86: loss=6.80974
+Epoch 87: loss=6.70584
+Epoch 88: loss=6.82692
+Epoch 89: loss=6.68719
+Epoch 90: loss=7.16353
+Epoch 91: loss=7.03286
+Epoch 92: loss=6.63616
+Epoch 93: loss=6.60075
+Epoch 94: loss=6.98232
+Epoch 95: loss=7.44816
+Epoch 96: loss=6.89426
+Epoch 97: loss=6.59802
+Epoch 98: loss=6.66245
+Epoch 99: loss=6.61127
+Epoch 100: loss=6.54845
+Training accuracy: 0.064
+Test accuracy: 0.063
+
+File list dumped
+
+Saved in file
+testff256_dropweights.py:267: UserWarning: To copy construct from a tensor, it is recommended to use sourceTensor.clone().detach() or sourceTensor.clone().detach().requires_grad_(True), rather than torch.tensor(sourceTensor).
+  d1 = torch.tensor(ber1.sample(w1size)).to(device)
+testff256_dropweights.py:268: UserWarning: To copy construct from a tensor, it is recommended to use sourceTensor.clone().detach() or sourceTensor.clone().detach().requires_grad_(True), rather than torch.tensor(sourceTensor).
+  d2 = torch.tensor(ber2.sample(w2size)).to(device)
+testff256_dropweights.py:270: UserWarning: To copy construct from a tensor, it is recommended to use sourceTensor.clone().detach() or sourceTensor.clone().detach().requires_grad_(True), rather than torch.tensor(sourceTensor).
+  dropw1 = torch.tensor(dropw1 ,requires_grad = True,dtype = datatype ).to(device)
+testff256_dropweights.py:272: UserWarning: To copy construct from a tensor, it is recommended to use sourceTensor.clone().detach() or sourceTensor.clone().detach().requires_grad_(True), rather than torch.tensor(sourceTensor).
+  dropw2 = torch.tensor(dropw2 ,requires_grad = True,dtype = datatype ).to(device)
