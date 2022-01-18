@@ -135,7 +135,7 @@ else:
 	print('Initialised')
 
 
-Nepochs =500  # 500, 150 for last run
+Nepochs =3000  # 500, 150 for last run
 
 #read weights and loss from file, if empty, set pass to 0, else pass to 1 and put stored weights and histogram to local variables and  train
 
