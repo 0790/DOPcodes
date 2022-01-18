@@ -242,9 +242,11 @@ def forwarddynamic(input,train=True):
 	for t in range(Ntimesteps):
 		z1 = z1_from_input[:,t]
 		if train:
-			outputlayer1 = spikefunctiondrop(Umem1)
-		else:
-			outputlayer1 = spikefunction(Umem1)
+			ber = torch.distributions.bernoulli.Bernoulli(probs=prob) #hidden layer spike to be removed with 20% probability 
+			#drop few in z1 and pass to I
+			di = torch.FloatTensor(ber.sample(z1.size())).to(device)
+			z1 = di * z1 * (1/prob)
+		outputlayer1 = spikefunction(Umem1)
 		resetspike = outputlayer1.detach() #what does this do?
 
 		Isynnext1 = lambd*Isyn1 + z1 # I[t+1] = lambda * I[t] + w1*inputspike  (no V matrix for feedforward)
