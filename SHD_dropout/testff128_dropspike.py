@@ -135,7 +135,7 @@ else:
 	print('Initialised')
 
 
-Nepochs =100  # 500, 150 for last run
+Nepochs =500  # 500, 150 for last run
 
 #read weights and loss from file, if empty, set pass to 0, else pass to 1 and put stored weights and histogram to local variables and  train
 
@@ -157,32 +157,10 @@ class SurGrad(auto.Function):
 		result, = ctx.saved_tensors #U is stored in results
 		grad_input = grad_output.clone()
 		grad = grad_input/(steep*torch.abs(result) +1.0 )**2
-		print("Normal")
 		return grad
 
 spikefunction = SurGrad.apply
 prob = 0.8
-class SurGradDrop(auto.Function):
-	@staticmethod
-	def forward(ctx,i):
-		ber = torch.distributions.bernoulli.Bernoulli(probs=prob) #hidden layer spike to be removed with 20% probability
-		di = torch.FloatTensor(ber.sample(i.size())).to(device)
-		di = i * di * (1/(prob))
-		ctx.save_for_backward(di)
-		result = torch.zeros_like(di)
-		result[di>Uthres] = 1.0
-		return result
-
-	@staticmethod
-	def backward(ctx, grad_output):
-		result, = ctx.saved_tensors #U is stored in results
-		result = result/(1-prob)
-		grad_input = grad_output.clone()
-		grad = grad_input/(steep*torch.abs(result) +1.0 )**2
-		
-		return grad
-
-spikefunctiondrop = SurGradDrop.apply
 
 
 
@@ -232,7 +210,6 @@ def forwarddynamic(input,train=True):
 	Umemnext1 = torch.zeros((Nbatch,N), dtype= datatype , device = device)
 	Urecord1 = []
 	Spikerecord = []
-	
 
 	#hidden layer 1
 	outputlayer1 = torch.zeros((Nbatch,N), dtype= datatype , device = device)
