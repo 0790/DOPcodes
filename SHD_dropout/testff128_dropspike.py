@@ -87,7 +87,7 @@ plt.show()
 N = 128 #per layer
 Nin = 700 #input from 700 bushy cells
 Nout = 20 #0-9 in english and german
-alpha = 0.001 #0.0005 #new value 0.0005 for new run 1-3,increasing for run 4
+alpha = 0.01 #0.0005 #new value 0.0005 for new run 1-3,increasing for run 4
 beta1 = 0.9
 beta2 = 0.999
 Nbatch = 256
@@ -135,7 +135,7 @@ else:
 	print('Initialised')
 
 
-Nepochs =3000  # 500, 150 for last run
+Nepochs =2000  # 500, 150 for last run
 
 #read weights and loss from file, if empty, set pass to 0, else pass to 1 and put stored weights and histogram to local variables and  train
 
