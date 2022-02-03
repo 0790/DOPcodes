@@ -1,0 +1,12 @@
+Lmod has detected the following error: The following module(s) are unknown:
+"cuda-11.0.2-gcc-10.2.0-3wlbq6u"
+
+Please check the spelling or version number. Also try "module spider ..."
+It is also possible your cache file is out-of-date; it may help to try:
+  $ module --ignore-cache load "cuda-11.0.2-gcc-10.2.0-3wlbq6u"
+
+Also make sure that all modulefiles written in TCL start with the string
+#%Module
+
+
+
