@@ -119,9 +119,9 @@ loss_hist = []
 #https://pytorch.org/docs/stable/nn.init.html
 
 
-if os.path.isfile((basepath+"/trained_values/trainedrecur256oglr-0.0002.pt")):
+if os.path.isfile((basepath+"/trained_values/trainedrecur256ogNEW.pt")):
 	print('The file is present.')
-	w1,w2,v1 = torch.load(basepath+'/trained_values/trainedrecur256oglr-0.0002.pt')
+	w1,w2,v1 = torch.load(basepath+'/trained_values/trainedrecur256ogNEW.pt')
 	print(w1)
 	print(w2)
 	print(v1)
@@ -131,7 +131,7 @@ else:
 	torch.nn.init.uniform_(w2, a=-np.sqrt(2.0/N), b=np.sqrt(2.0/N))
 	torch.nn.init.uniform_(v1, a =-np.sqrt(2.0/N), b= np.sqrt(2.0/N))
 	print("Initialised with numbers from uniform distribution")
-Nepochs =250 #1000
+Nepochs =400 #1000
 
 
 import torch.autograd as auto
@@ -306,13 +306,13 @@ loss_hist.append(loss_list)
 print("Training accuracy: %.3f"%(accuracy(x_train,y_train)))
 print("Test accuracy: %.3f"%(accuracy(x_test,y_test)))
 
-torch.save([rw1,rw2,rv1] , basepath+'/trained_values/trainedrecur256oglr-0.0002.pt')
-open_file = open(basepath+"/trained_values/trainedhistrecur256oglr-0.0002.pkl","ab")
+torch.save([rw1,rw2,rv1] , basepath+'/trained_values/trainedrecur256ogNEW.pt')
+open_file = open(basepath+"/trained_values/trainedhistrecur256ogNEW.pkl","ab")
 pickle.dump(loss_list,open_file)
 print("\nFile list dumped\n")
 open_file.close()
 print("Saved in file")
-open_file = open(basepath+ "/trained_values/trainedhistrecur256oglr-0.0002.pkl","rb")
+open_file = open(basepath+ "/trained_values/trainedhistrecur256ogNEW.pkl","rb")
 a = pickle.load(open_file)
 
 print("1000 epochs recur round 1")

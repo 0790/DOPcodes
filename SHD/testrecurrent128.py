@@ -121,14 +121,14 @@ loss_hist = []
 if os.path.isfile((basepath+"/trained_values/trainedrecuroglr.pt")):
 	print('The file is present.')
 	w1,w2,v1 = torch.load(basepath+'/trained_values/trainedrecuroglr.pt')
-	
+
 else:
 	print("File not present for network with uniform weight initialisation") ;
 	torch.nn.init.uniform_(w1, a=-np.sqrt(2.0/Nin), b=np.sqrt(2.0/Nin)) #given as uniform distribution in papers, but normal distribution in spytorch code
 	torch.nn.init.uniform_(w2, a=-np.sqrt(2.0/N), b=np.sqrt(2.0/N))
 	torch.nn.init.uniform_(v1, a =-np.sqrt(2.0/N), b= np.sqrt(2.0/N))
 	print("Initialised with numbers from uniform distribution")
-Nepochs = 200
+Nepochs = 400
 
 
 import torch.autograd as auto

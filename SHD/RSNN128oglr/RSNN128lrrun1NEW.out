@@ -10,5 +10,3 @@ Also make sure that all modulefiles written in TCL start with the string
 
 
 
-slurmstepd: error: *** JOB 8026 ON gpunode2 CANCELLED AT 2022-02-03T13:41:25 ***
-slurmstepd: error: *** STEP 8026.0 ON gpunode2 CANCELLED AT 2022-02-03T13:41:25 ***
