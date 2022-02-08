@@ -1,0 +1,26 @@
+Lmod has detected the following error: The following module(s) are unknown:
+"cuda-11.0.2-gcc-10.2.0-3wlbq6u"
+
+Please check the spelling or version number. Also try "module spider ..."
+It is also possible your cache file is out-of-date; it may help to try:
+  $ module --ignore-cache load "cuda-11.0.2-gcc-10.2.0-3wlbq6u"
+
+Also make sure that all modulefiles written in TCL start with the string
+#%Module
+
+
+
+/home/venkat/Unreliable_Synaptic_Transmission/Deepti/DOPcodes/SHD/dataset/shddataset/
+init done
+/home/venkat/anaconda3/envs/Deepti_Project/lib/python3.8/site-packages/torch/cuda/__init__.py:52: UserWarning: CUDA initialization: Unexpected error from cudaGetDeviceCount(). Did you run some cuda functions before calling NumCudaDevices() that might have already set an error? Error 803: system has unsupported display driver / cuda driver combination (Triggered internally at  /opt/conda/conda-bld/pytorch_1623448234945/work/c10/cuda/CUDAFunctions.cpp:115.)
+  return torch._C._cuda_getDeviceCount() > 0
+original_recur.py:67: DeprecationWarning: `np.int` is a deprecated alias for the builtin `int`. To silence this warning, use `int` by itself. Doing this will not modify any behavior and is safe. When replacing `np.int`, you may wish to use e.g. `np.int64` or `np.int32` to specify the precision. If you wish to review your current use, check the release note link for additional information.
+Deprecated in NumPy 1.20; for more details and guidance: https://numpy.org/devdocs/release/1.20.0-notes.html#deprecations
+  labels_ = np.array(y,dtype=np.int)
+Traceback (most recent call last):
+  File "original_recur.py", line 245, in <module>
+    loss_list,[rw1,rw2,rv1] = train(x_train, y_train, lr=2e-4, nb_epochs=nb_epochs)
+  File "original_recur.py", line 219, in train
+    y_local = y_local.type(torch.cuda.LongTensor)
+RuntimeError: Unexpected error from cudaGetDeviceCount(). Did you run some cuda functions before calling NumCudaDevices() that might have already set an error? Error 803: system has unsupported display driver / cuda driver combination
+srun: error: gpunode2: task 0: Exited with exit code 1

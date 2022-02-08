@@ -1,0 +1,35 @@
+Lmod has detected the following error: The following module(s) are unknown:
+"cuda-11.0.2-gcc-10.2.0-3wlbq6u"
+
+Please check the spelling or version number. Also try "module spider ..."
+It is also possible your cache file is out-of-date; it may help to try:
+  $ module --ignore-cache load "cuda-11.0.2-gcc-10.2.0-3wlbq6u"
+
+Also make sure that all modulefiles written in TCL start with the string
+#%Module
+
+
+
+/home/venkat/Unreliable_Synaptic_Transmission/Deepti/DOPcodes/SHD/dataset/shddataset/
+The file is present.
+/home/venkat/anaconda3/envs/Deepti_Project/lib/python3.8/site-packages/torch/cuda/__init__.py:52: UserWarning: CUDA initialization: Unexpected error from cudaGetDeviceCount(). Did you run some cuda functions before calling NumCudaDevices() that might have already set an error? Error 803: system has unsupported display driver / cuda driver combination (Triggered internally at  /opt/conda/conda-bld/pytorch_1623448234945/work/c10/cuda/CUDAFunctions.cpp:115.)
+  return torch._C._cuda_getDeviceCount() > 0
+Traceback (most recent call last):
+  File "testrecurrent256.py", line 124, in <module>
+    w1,w2,v1 = torch.load(basepath+'/trained_values/trainedrecur256ogNEW.pt')
+  File "/home/venkat/anaconda3/envs/Deepti_Project/lib/python3.8/site-packages/torch/serialization.py", line 607, in load
+    return _load(opened_zipfile, map_location, pickle_module, **pickle_load_args)
+  File "/home/venkat/anaconda3/envs/Deepti_Project/lib/python3.8/site-packages/torch/serialization.py", line 882, in _load
+    result = unpickler.load()
+  File "/home/venkat/anaconda3/envs/Deepti_Project/lib/python3.8/site-packages/torch/serialization.py", line 857, in persistent_load
+    load_tensor(data_type, size, key, _maybe_decode_ascii(location))
+  File "/home/venkat/anaconda3/envs/Deepti_Project/lib/python3.8/site-packages/torch/serialization.py", line 846, in load_tensor
+    loaded_storages[key] = restore_location(storage, location)
+  File "/home/venkat/anaconda3/envs/Deepti_Project/lib/python3.8/site-packages/torch/serialization.py", line 175, in default_restore_location
+    result = fn(storage, location)
+  File "/home/venkat/anaconda3/envs/Deepti_Project/lib/python3.8/site-packages/torch/serialization.py", line 151, in _cuda_deserialize
+    device = validate_cuda_device(location)
+  File "/home/venkat/anaconda3/envs/Deepti_Project/lib/python3.8/site-packages/torch/serialization.py", line 135, in validate_cuda_device
+    raise RuntimeError('Attempting to deserialize object on a CUDA '
+RuntimeError: Attempting to deserialize object on a CUDA device but torch.cuda.is_available() is False. If you are running on a CPU-only machine, please use torch.load with map_location=torch.device('cpu') to map your storages to the CPU.
+srun: error: gpunode2: task 0: Exited with exit code 1

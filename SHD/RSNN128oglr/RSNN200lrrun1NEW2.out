@@ -1,0 +1,134 @@
+Lmod has detected the following error: The following module(s) are unknown:
+"cuda-11.0.2-gcc-10.2.0-3wlbq6u"
+
+Please check the spelling or version number. Also try "module spider ..."
+It is also possible your cache file is out-of-date; it may help to try:
+  $ module --ignore-cache load "cuda-11.0.2-gcc-10.2.0-3wlbq6u"
+
+Also make sure that all modulefiles written in TCL start with the string
+#%Module
+
+
+
+/home/venkat/Unreliable_Synaptic_Transmission/Deepti/DOPcodes/SHD/dataset/shddataset/
+The file is present.
+Epoch 1: loss=0.22123
+Epoch 2: loss=0.20657
+Epoch 3: loss=0.22098
+Epoch 4: loss=0.21574
+Epoch 5: loss=0.20939
+Epoch 6: loss=0.20899
+Epoch 7: loss=0.20230
+Epoch 8: loss=0.22698
+Epoch 9: loss=0.22992
+Epoch 10: loss=0.22220
+Trained for 10 epochs
+Training accuracy: 0.962
+Epoch 1: loss=0.21662
+Epoch 2: loss=0.21250
+Epoch 3: loss=0.22347
+Epoch 4: loss=0.22039
+Epoch 5: loss=0.22576
+Epoch 6: loss=0.21684
+Epoch 7: loss=0.22382
+Epoch 8: loss=0.20840
+Epoch 9: loss=0.21777
+Epoch 10: loss=0.20881
+Epoch 11: loss=0.22454
+Epoch 12: loss=0.22062
+Epoch 13: loss=0.23024
+Epoch 14: loss=0.21940
+Epoch 15: loss=0.22866
+Epoch 16: loss=0.22032
+Epoch 17: loss=0.20949
+Epoch 18: loss=0.20933
+Epoch 19: loss=0.21037
+Epoch 20: loss=0.21023
+Epoch 21: loss=0.21287
+Epoch 22: loss=0.23513
+Epoch 23: loss=0.21877
+Epoch 24: loss=0.21616
+Epoch 25: loss=0.21002
+Epoch 26: loss=0.21837
+Epoch 27: loss=0.21554
+Epoch 28: loss=0.21995
+Epoch 29: loss=0.19966
+Epoch 30: loss=0.21183
+Epoch 31: loss=0.21112
+Epoch 32: loss=0.22522
+Epoch 33: loss=0.20102
+Epoch 34: loss=0.21216
+Epoch 35: loss=0.21351
+Epoch 36: loss=0.20747
+Epoch 37: loss=0.20126
+Epoch 38: loss=0.21297
+Epoch 39: loss=0.20072
+Epoch 40: loss=0.21441
+Epoch 41: loss=0.20199
+Epoch 42: loss=0.19938
+Epoch 43: loss=0.20705
+Epoch 44: loss=0.20578
+Epoch 45: loss=0.19606
+Epoch 46: loss=0.19447
+Epoch 47: loss=0.21419
+Epoch 48: loss=0.20703
+Epoch 49: loss=0.20625
+Epoch 50: loss=0.19887
+Epoch 51: loss=0.20178
+Epoch 52: loss=0.19837
+Epoch 53: loss=0.19563
+Epoch 54: loss=0.20583
+Epoch 55: loss=0.19737
+Epoch 56: loss=0.20635
+Epoch 57: loss=0.19802
+Epoch 58: loss=0.20156
+Epoch 59: loss=0.20426
+Epoch 60: loss=0.18461
+Epoch 61: loss=0.19804
+Epoch 62: loss=0.19970
+Epoch 63: loss=0.18641
+Epoch 64: loss=0.19816
+Epoch 65: loss=0.19575
+Epoch 66: loss=0.20091
+Epoch 67: loss=0.19199
+Epoch 68: loss=0.20420
+Epoch 69: loss=0.19894
+Epoch 70: loss=0.19161
+Epoch 71: loss=0.20505
+Epoch 72: loss=0.19644
+Epoch 73: loss=0.19747
+Epoch 74: loss=0.19087
+Epoch 75: loss=0.19346
+Epoch 76: loss=0.20632
+Epoch 77: loss=0.19620
+Epoch 78: loss=0.19254
+Epoch 79: loss=0.20003
+Epoch 80: loss=0.19385
+Epoch 81: loss=0.20389
+Epoch 82: loss=0.19505
+Epoch 83: loss=0.20983
+Epoch 84: loss=0.20555
+Epoch 85: loss=0.20552
+Epoch 86: loss=0.19261
+Epoch 87: loss=0.18873
+Epoch 88: loss=0.19743
+Epoch 89: loss=0.19366
+Epoch 90: loss=0.20214
+Epoch 91: loss=0.19695
+Epoch 92: loss=0.19701
+Epoch 93: loss=0.19185
+Epoch 94: loss=0.19224
+Epoch 95: loss=0.20141
+Epoch 96: loss=0.21113
+Epoch 97: loss=0.19876
+Epoch 98: loss=0.19972
+Epoch 99: loss=0.19346
+Epoch 100: loss=0.18783
+Training accuracy: 0.960
+Test accuracy: 0.591
+
+File list dumped
+
+Saved in file
+500 epochs recur round 2
+are new values in file?

@@ -116,9 +116,9 @@ loss_hist = []
 
 print("init done")
 
-if os.path.isfile((basepath+"/trained_values/trainedogrecure.pt")):
+if os.path.isfile((basepath+"/trained_values/trainedogrecure128NEW.pt")):
 	print('The file is present.')
-	w1,w2,v1 = torch.load(basepath+'/trained_values/trainedogrecure.pt')
+	w1,w2,v1 = torch.load(basepath+'/trained_values/trainedogrecure128NEW.pt')
 else:
 	torch.nn.init.normal_(w1, mean=0.0, std=weight_scale/np.sqrt(nb_inputs))
 	torch.nn.init.normal_(w2, mean=0.0, std=weight_scale/np.sqrt(nb_hidden))
@@ -241,15 +241,15 @@ def compute_classification_accuracy(x_data, y_data):
 
 
 
-nb_epochs = 200
+nb_epochs = 500
 loss_list,[rw1,rw2,rv1] = train(x_train, y_train, lr=2e-4, nb_epochs=nb_epochs)
 print("Training accuracy: %.3f"%(compute_classification_accuracy(x_train,y_train)))
 print("Test accuracy: %.3f"%(compute_classification_accuracy(x_test,y_test)))
 loss_hist.append(loss_list)
 
 
-torch.save([rw1,rw2,rv1] , basepath+'/trained_values/trainedogrecure.pt')
-open_file = open((basepath+"/trained_values/trainedhistogrecur.pkl"),"ab")
+torch.save([rw1,rw2,rv1] , basepath+'/trained_values/trainedogrecure128NEW.pt')
+open_file = open((basepath+"/trained_values/trainedhistogrecur128NEW.pkl"),"ab")
 pickle.dump(loss_list,open_file)
 print("\nFile list dumped\n")
 open_file.close()
