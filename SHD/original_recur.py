@@ -25,7 +25,7 @@ import torch
 import torch.nn as nn
 import torchvision
 from torch.utils import data
-
+import pickle
 
 
 basepath = os.getcwd() 
@@ -44,7 +44,7 @@ y_test = test_file['labels']
 
 
 nb_inputs  = 700
-nb_hidden  = 200
+nb_hidden  = 128
 nb_outputs = 20
 
 time_step = 1e-3
@@ -116,9 +116,9 @@ loss_hist = []
 
 print("init done")
 
-if os.path.isfile((basepath+"/trained_values/trainedogrecure128NEW.pt")):
+if os.path.isfile((basepath+"/trained_values/zenketrainedogrecure128NEW.pt")):
 	print('The file is present.')
-	w1,w2,v1 = torch.load(basepath+'/trained_values/trainedogrecure128NEW.pt')
+	w1,w2,v1 = torch.load(basepath+'/trained_values/zenketrainedogrecure128NEW.pt')
 else:
 	torch.nn.init.normal_(w1, mean=0.0, std=weight_scale/np.sqrt(nb_inputs))
 	torch.nn.init.normal_(w2, mean=0.0, std=weight_scale/np.sqrt(nb_hidden))
@@ -248,8 +248,8 @@ print("Test accuracy: %.3f"%(compute_classification_accuracy(x_test,y_test)))
 loss_hist.append(loss_list)
 
 
-torch.save([rw1,rw2,rv1] , basepath+'/trained_values/trainedogrecure128NEW.pt')
-open_file = open((basepath+"/trained_values/trainedhistogrecur128NEW.pkl"),"ab")
+torch.save([rw1,rw2,rv1] , basepath+'/trained_values/zenketrainedogrecure128NEW.pt')
+open_file = open((basepath+"/trained_values/zenketrainedhistogrecur128NEW.pkl"),"ab")
 pickle.dump(loss_list,open_file)
 print("\nFile list dumped\n")
 open_file.close()
