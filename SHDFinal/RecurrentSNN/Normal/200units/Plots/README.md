@@ -1,0 +1,1 @@
+Contains loss plots, list of losses after every run, testing accuracy change after every run
