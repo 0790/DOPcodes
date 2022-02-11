@@ -6,7 +6,7 @@
 #SBATCH --mem 20G
 #SBATCH -t 1-00:00
 #SBATCH --job-name=RSNN512uniform
-#SBATCH -o Outputs/TEST1RUN1.out
+#SBATCH -o Outputs/TEST1RUN2.out
 #SBACTH -e slurm.%j.err
 #SBATCH --mail-user=f20180790@hyderabad.bits-pilani.ac.in
 #SBATCH --mail-type=ALL
