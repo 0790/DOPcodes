@@ -316,7 +316,7 @@ print("Training accuracy: %.3f"%(accuracy(x_train,y_train)))
 print("Test accuracy: %.3f"%(accuracy(x_test,y_test)))
 
 torch.save([rw1,rw2,rv1] , basepath+'/Weights/trainedweights256_recurrentnormalTEST1.pt')
-open_file = open((basepath+"/Plots/list256_recurrentnormalTEST1RUN2.pkl"),"ab")
+open_file = open((basepath+"/Plots/list256_recurrentnormalTEST1RUN3.pkl"),"ab")
 pickle.dump(loss_list,open_file)
 print("\nFile list dumped\n")
 open_file.close()
