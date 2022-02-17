@@ -1,3 +1,4 @@
+
 # -*- coding: utf-8 -*-
 """TestFeedForwardSNN-SHD.ipynb
 
@@ -355,7 +356,7 @@ loss_hist.append(loss_list)
 print("Training accuracy: %.3f"%(accuracy(x_train,y_train)))
 print("Test accuracy: %.3f"%(accuracy(x_test,y_test)))
 torch.save([rw1,rw2,rw3] , basepath+'/Weights/trainedweights128_2layersTEST1.pt')
-open_file = open((basepath+"/Plots/list128_2layersTEST1RUN8.pkl"),"ab")
+open_file = open((basepath+"/Plots/list128_2layersTEST1RUN9.pkl"),"ab")
 pickle.dump(loss_list,open_file)
 print("\nFile list dumped\n")
 open_file.close()
